@@ -1,0 +1,40 @@
+# Hermes Hub — Git ignore
+# НИКОГДА не коммитить: secrets, DB, logs, orders, temp files
+
+# Secrets
+.env
+*.token
+*token*
+*secret*
+config.py
+
+# Database
+*.db
+*.sqlite
+orders.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+venv/
+
+# IDE / OS
+.obsidian/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temp / binary
+*.log
+*.png
+*.jpg
+*.pdf
+*.exe
+*.zip
+
+# Git itself
+.git/

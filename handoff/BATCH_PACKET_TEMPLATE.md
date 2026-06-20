@@ -1,0 +1,33 @@
+# Batch Packet Template
+
+Use this for larger handoff from ChatGPT, Hermes or the user to Codex.
+
+```text
+BATCH_PACKET:
+
+GOAL:
+
+CURRENT CONTEXT:
+
+ACCEPTED DECISIONS:
+
+TASKS:
+1.
+2.
+3.
+
+WHAT CODEX MAY DO WITHOUT ASKING:
+
+WHAT CODEX MUST NOT TOUCH:
+
+WHAT NEEDS USER CONFIRMATION:
+
+EXPECTED RESULT:
+
+CHECKS:
+
+FILES TO UPDATE:
+
+REPORT BACK TO CHATGPT:
+```
+
