@@ -11,10 +11,20 @@
 - 10 операционных документов
 - GitHub: toliksoldatov1983-tech/hermes-hub
 - Autostart enabled
-- Phase 2 dry-run пройден
+- Phase 2 dry-run пройден, feature flag ON
 - Hermes-чат в Telegram: без кнопок, без команд
-- Obsidian подключён
+- Obsidian подключён, мост создан
 - Репозиторий на сервере, авто-pull 5 мин
+- DeepSeek API ключ на сервере
+- Синхронизация контекста: Hermes ↔ бот ↔ Codex
+- Codex читает CURRENT_SESSION_CONTEXT.md при старте
+- История чатов бота сохраняется в лог
+
+## Vision
+
+- OpenAI ключ добавлен на сервер (gpt-4o-mini)
+- Модуль malyarka_vision/openai_vision.py готов
+- Осталось: подключить приём фото в app.py (Codex, 5 минут)
 
 ## Текущий статус
 
@@ -22,15 +32,10 @@
 - Feature flag: ON
 - Production: OFF
 - Сервер: 178.104.95.187
+- GitHub: toliksoldatov1983-tech/hermes-hub (CHECKPOINT_005)
 
-## Последнее обсуждение
+## Ближайшие задачи
 
-Пользователь хочет полную синхронизацию между Hermes на ПК и ботом в Telegram.
-Нужно: общий контекст, общая история, бот должен видеть всё что обсуждаем.
-Реализую через CURRENT_SESSION_CONTEXT.md + BOT_CHAT_LOG.md.
-
-## Что делаем сейчас
-
-- Создаём общий лог чата
-- Обновляем бота чтобы он читал контекст и писал ответы в лог
-- Полная синхронизация ПК ↔ сервер ↔ бот через GitHub
+- Codex: подключить Vision к приёму фото в боте
+- Codex-батчи: Malyarka Clean core, агенты, архив
+- Экономика: отложена
