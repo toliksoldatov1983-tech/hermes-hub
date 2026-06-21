@@ -21,6 +21,7 @@ DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions"
 DEEPSEEK_MODEL = "deepseek-v4-pro"
 
 _CONTEXT_FILES = [
+    "CURRENT_SESSION_CONTEXT.md",
     "WHAT_NEXT.md",
     "TASK_QUEUE.md",
     "sync/SHARED_CURRENT_STATUS.md",
