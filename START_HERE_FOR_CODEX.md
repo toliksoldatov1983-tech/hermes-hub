@@ -5,10 +5,11 @@ You are working in the clean Hermes Hub workspace.
 Always start by reading:
 
 ```text
+E:\Hermes-Hub\CURRENT_SESSION_CONTEXT.md
 E:\Hermes-Hub\HERMES_HUB_STATE.md
 E:\Hermes-Hub\SAFETY_RULES.md
 E:\Hermes-Hub\PROJECT_HINTS.md
-E:\Hermes-Hub\tasks\NEXT_TASKS.md
+E:\Hermes-Hub\TASK_QUEUE.md
 E:\Hermes-Hub\logs\WORKLOG.md
 ```
 
