@@ -55,7 +55,7 @@
 | C3 | BATCH_012: Export Regression Tests | Ready |
 | C4 | BATCH_016: Old Archive Review | Ready |
 | C5 | BATCH_010: Phase 2 Dry-Run Retry | Blocked |
-| C6 | BATCH_013: GitHub Setup | Needs user decision |
+| C6 | BATCH_013: GitHub Setup | ✅ CHECKPOINT_001 |
 
 ---
 
@@ -63,10 +63,10 @@
 
 | # | Вопрос |
 |---|--------|
-| D1 | Нужен ли GitHub? |
-| D2 | Autostart или ручной controlled start? |
-| D3 | Нужна ли экономика сейчас? |
-| D4 | Альтернатива для Vision? |
+| D1 | Нужен ли GitHub? | ✅ решено — CHECKPOINT_001 |
+| D2 | Autostart или ручной controlled start? | ✅ решено — autostart, BATCH_017 готов |
+| D3 | Нужна ли экономика сейчас? | 🔵 later |
+| D4 | Альтернатива для Vision? | ✅ решено — Gemini, review позже |
 
 ---
 

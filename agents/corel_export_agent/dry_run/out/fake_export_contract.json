@@ -1,0 +1,144 @@
+[
+  {
+    "source": "malyarka_agent",
+    "target": "corel_export_agent",
+    "status": "ready",
+    "ready_for_corel": true,
+    "confirmed_count": 1,
+    "disputed_count": 0,
+    "export_blocked": false,
+    "export_blockers": [],
+    "corel_rows": [
+      {
+        "index": 1,
+        "height_mm": 1000,
+        "width_mm": 400,
+        "quantity": 4,
+        "area_m2": 1.6,
+        "material": "МДФ",
+        "color": "RAL 9010",
+        "finish": "матовый"
+      }
+    ],
+    "total_area_m2": 0,
+    "manager_review_required": false,
+    "flags": {
+      "discount_request": false,
+      "technical_advice_requested": false,
+      "manager_review_required": false
+    },
+    "not_final_export": true
+  },
+  {
+    "source": "malyarka_agent",
+    "target": "corel_export_agent",
+    "status": "ready",
+    "ready_for_corel": true,
+    "confirmed_count": 2,
+    "disputed_count": 0,
+    "export_blocked": false,
+    "export_blockers": [],
+    "corel_rows": [
+      {
+        "index": 1,
+        "height_mm": 1000,
+        "width_mm": 400,
+        "quantity": 2,
+        "area_m2": 0.8,
+        "material": "МДФ",
+        "color": "RAL 9010",
+        "finish": "матовый"
+      },
+      {
+        "index": 2,
+        "height_mm": 600,
+        "width_mm": 300,
+        "quantity": 1,
+        "area_m2": 0.18,
+        "material": "МДФ",
+        "color": "RAL 8017",
+        "finish": "глянцевый"
+      }
+    ],
+    "total_area_m2": 0,
+    "manager_review_required": false,
+    "flags": {
+      "discount_request": false,
+      "technical_advice_requested": false,
+      "manager_review_required": false
+    },
+    "not_final_export": true
+  },
+  {
+    "source": "malyarka_agent",
+    "target": "corel_export_agent",
+    "status": "blocked",
+    "ready_for_corel": false,
+    "confirmed_count": 1,
+    "disputed_count": 1,
+    "export_blocked": true,
+    "export_blockers": [
+      "export_blocked_flag",
+      "disputed_rows_present"
+    ],
+    "corel_rows": [],
+    "total_area_m2": 0,
+    "manager_review_required": false,
+    "flags": {
+      "discount_request": false,
+      "technical_advice_requested": false,
+      "manager_review_required": false
+    },
+    "not_final_export": true
+  },
+  {
+    "source": "malyarka_agent",
+    "target": "corel_export_agent",
+    "status": "ready",
+    "ready_for_corel": true,
+    "confirmed_count": 3,
+    "disputed_count": 0,
+    "export_blocked": false,
+    "export_blockers": [],
+    "corel_rows": [
+      {
+        "index": 1,
+        "height_mm": 1000,
+        "width_mm": 400,
+        "quantity": 4,
+        "area_m2": 1.6,
+        "material": "МДФ",
+        "color": "RAL 9010",
+        "finish": "матовый"
+      },
+      {
+        "index": 2,
+        "height_mm": 600,
+        "width_mm": 300,
+        "quantity": 2,
+        "area_m2": 0.36,
+        "material": "МДФ",
+        "color": "RAL 8017",
+        "finish": "глянцевый"
+      },
+      {
+        "index": 3,
+        "height_mm": 800,
+        "width_mm": 500,
+        "quantity": 1,
+        "area_m2": 0.4,
+        "material": "МДФ",
+        "color": "RAL 7016",
+        "finish": "матовый"
+      }
+    ],
+    "total_area_m2": 0,
+    "manager_review_required": false,
+    "flags": {
+      "discount_request": false,
+      "technical_advice_requested": false,
+      "manager_review_required": false
+    },
+    "not_final_export": true
+  }
+]

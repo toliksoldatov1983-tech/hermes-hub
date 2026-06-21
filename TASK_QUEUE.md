@@ -37,8 +37,8 @@
 | C3 | BATCH_012 | Export regression tests (Corel Excel + Файл) | Ready |
 | C4 | BATCH_016 | Read-only аудит старого архива | Ready |
 | C5 | BATCH_011 | Telegram Hermes interface дизайн | Ready |
-| C6 | BATCH_013 | GitHub repo setup | Needs D1 |
-| C7 | BATCH_017 | Autostart enable plan | Needs D2 |
+| C6 | BATCH_013 | GitHub repo setup | ✅ CHECKPOINT_001 |
+| C7 | BATCH_017 | Autostart enable | ✅ enabled |
 | C8 | BATCH_018 | Economy/pricing module plan | Needs D3 |
 | C9 | BATCH_010 | Phase 2 dry-run retry | 🚫 Blocked |
 
@@ -48,10 +48,10 @@
 
 | # | Вопрос | Статус |
 |---|--------|--------|
-| D1 | Нужен ли GitHub? | ⬜ ждёт |
-| D2 | Autostart или ручной controlled start? | ⬜ ждёт |
-| D3 | Нужна ли экономика сейчас? | ⬜ ждёт |
-| D4 | Альтернатива для Vision? | ⬜ ждёт |
+| D1 | Нужен ли GitHub? | ✅ решено — создан, CHECKPOINT_001 |
+| D2 | Autostart или ручной controlled start? | ✅ решено — autostart, BATCH_017 готов |
+| D3 | Нужна ли экономика сейчас? | 🔵 later |
+| D4 | Альтернатива для Vision? | ✅ решено — Gemini на сервере, DeepSeek не поддерживает. Review позже. |
 
 ---
 
@@ -61,8 +61,8 @@
 |---|-----|--------|--------|
 | B1 | Phase 2 dry-run | Adapter перехватывает order-like | 🚫 |
 | B2 | Production enable | Phase 2 не готов | 🚫 |
-| B3 | Autostart enable | Ждёт D2 | 🚫 |
-| B4 | Vision API | Нет альтернативы | 🚫 |
+| B3 | Autostart enable | ✅ enabled 2026-06-21 |
+| B4 | Vision API | Gemini есть, review позже | 🔵 later |
 
 ---
 
