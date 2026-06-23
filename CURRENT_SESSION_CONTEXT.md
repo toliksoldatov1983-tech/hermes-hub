@@ -1,19 +1,20 @@
-# Malyarka — Общий контекст сессии
+# Malyarka — Контекст сессии
 
-Дата: 2026-06-23
-Проект: Malyarka (ранее Hermes Hub / Malyarka Clean)
+Дата: 2026-06-24
 
-## Что работает
+## Готово
 
-- 🤖 Telegram-бот: active на сервере 178.104.95.187
-- 💬 Hermes-чат в боте: общение без кнопок, авто-заказ
-- 👁️ Vision: OpenAI GPT-4o-mini, распознавание фото заказов
-- 🔄 GitHub: toliksoldatov1983-tech/hermes-hub, авто-pull 5 мин
-- 🧠 Obsidian: подключён
-- 🔑 DeepSeek + OpenAI ключи на сервере
+- ✅ Порядок в файлах (86 мусорных файлов удалено)
+- ✅ Контекст Codex почищен (11K → 200 строк)
+- ✅ BATCH_021: полный core pipeline (парсер→расчёт→экспорт)
+- ✅ BATCH_015: 4 агента (Corel, File, Memory, Diagnostics)
+- ✅ Локальный Windows-бот остановлен — Conflict ушёл
+- ✅ Проект переименован: Malyarka
 
-## Что предстоит
+## Работает
 
-- Malyarka Clean Core (парсер + dispute + area)
-- Агенты (Adapter, Corel, Memory, Diagnostics)
-- Возможно: переименовать GitHub репозиторий
+- 🤖 Бот: active, без ошибок
+- 💬 Hermes-чат: без кнопок
+- 👁️ Vision: OpenAI GPT-4o-mini
+- 📐 Полный конвейер заказа
+- 🔄 GitHub sync
