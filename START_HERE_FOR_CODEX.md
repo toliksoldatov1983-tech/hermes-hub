@@ -1,56 +1,38 @@
 # START HERE FOR CODEX
 
-You are working in the clean Hermes Hub workspace.
+Проект: **Malyarka** (ранее Hermes Hub)
+Папка: `E:\Hermes-Hub`
 
-Always start by reading:
+## При старте читай
 
 ```text
-E:\Hermes-Hub\CURRENT_SESSION_CONTEXT.md
 E:\Hermes-Hub\HERMES_HUB_STATE.md
+E:\Hermes-Hub\CURRENT_SESSION_CONTEXT.md
 E:\Hermes-Hub\SAFETY_RULES.md
-E:\Hermes-Hub\PROJECT_HINTS.md
-E:\Hermes-Hub\TASK_QUEUE.md
-E:\Hermes-Hub\logs\WORKLOG.md
-```
-
-If the task involves old Malyarka, also read:
-
-```text
-E:\Hermes-General\logs\CODEX_AUDIT_2026-06-12.md
-E:\Hermes-General\logs\MALYARKA_GIT_DIFF_REVIEW_2026-06-12.md
+E:\Hermes-Hub\handoff\
 ```
 
 ## Codex Role
 
-Codex implements, verifies and writes files.
+- Реализует, проверяет, деплоит
+- Работает внутри `E:\Hermes-Hub`
+- После каждого шага обновляет `logs/WORKLOG.md`
+- Не читает секреты, не делает внешние API вызовы
+- Даёт пользователю полные Win+R пути
 
-Codex should:
+## Запрещено
 
-- keep work inside `E:\Hermes-Hub` unless explicitly told otherwise;
-- keep old Malyarka frozen;
-- update state, worklog and next tasks after every meaningful stage;
-- avoid secrets and external API calls;
-- give the user full Win+R paths.
-
-## Forbidden Without Separate Permission
-
-```text
+```
+.env, token, config.py, os.environ, API ключи
+orders.db, логи с реальными данными
 C:\Users\user\Desktop\malyarka_codex_work
 C:\Users\user\Desktop\malyarka_memory_cleanup
-.env
-orders.db
-.git
-tokens
-keys
+Production (Phase 2)
 Telegram launch
-Vision
-external APIs
-old bot.py
+Vision без разрешения
+git push без approval
 ```
 
-## Output Style
+## Стиль
 
-Explain simply in Russian.
-
-For folders, always give a full Win+R path.
-
+Коротко, по-русски. Для папок — полный Win+R путь.
