@@ -1797,4 +1797,18 @@ WORKLOG → Hub (logs/WORKLOG.md)
 3. Для Codex-задач → готовит batch-пакет → пользователь approve → Codex исполняет.
 4. Раз в неделю: weekly snapshot + проверка противоречий.
 5. После каждого батча: обновить state/sync/worklog/master map.
+## 2026-06-23 — Live Telegram order preview update
+
+Live confirmed:
+
+- neutral order-like input such as `1000*400` opens order preview immediately;
+- `/заказ` is no longer required for obvious size input;
+- the unwanted persistent three-button mode keyboard is removed from order fallback responses;
+- order result buttons remain: Excel for Corel, Malyarka File, copy for Corel.
+
+Reference:
+
+```text
+E:\Hermes-Hub\docs\TELEGRAM_ORDER_PREVIEW_LOOP_AND_BUTTONS_FIX_2026-06-23.md
+```
 

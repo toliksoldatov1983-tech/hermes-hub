@@ -219,3 +219,25 @@ Result:
 - File downloads with Russian headers/statuses.
 - Forbidden English technical fields are absent.
 - Rollback was not needed.
+## 2026-06-23 — Telegram order preview loop and extra buttons fixed
+
+Status:
+
+```text
+TELEGRAM_ORDER_PREVIEW_LOOP_AND_BUTTONS_FIX_CONFIRMED
+```
+
+Done:
+
+- fixed neutral-mode order text so it parses immediately;
+- removed persistent three-button reply keyboard fallback;
+- deployed clean runtime to server;
+- verified service active and logs clean;
+- verified server-side `1000*400` produces order preview;
+- user confirmed preview appears correctly in Telegram.
+
+Report:
+
+```text
+E:\Hermes-Hub\docs\TELEGRAM_ORDER_PREVIEW_LOOP_AND_BUTTONS_FIX_2026-06-23.md
+```

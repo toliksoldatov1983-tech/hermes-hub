@@ -1,0 +1,12 @@
+.env
+orders.db
+__pycache__/
+.venv/
+*.pyc
+photos/
+images/
+uploads/
+*.jpg
+*.jpeg
+*.png
+*.webp

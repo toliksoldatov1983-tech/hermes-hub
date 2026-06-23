@@ -326,3 +326,24 @@ Phase 2: OFF
 production: OFF
 rollback: not needed
 ```
+## 2026-06-23 — TELEGRAM_ORDER_PREVIEW_LOOP_AND_BUTTONS_FIX_CONFIRMED
+
+Runtime:
+
+| Item | Status |
+|------|--------|
+| Server | hermes (178.104.95.187) |
+| Bot | active/running |
+| Service | malyarka-telegram-bot.service |
+| Local clean runtime | `E:\Hermes-Hub\projects\malyarka-runtime-clean` |
+| Live runtime | `/opt/malyarka-telegram-bot` |
+| Tests | `441 passed` |
+| Order-like neutral input | parses immediately |
+| Extra three-button keyboard | removed from fallback |
+| User sanity | preview confirmed OK |
+
+Important rule:
+
+```text
+Normal order text must go straight to preview. Do not reintroduce /заказ gating or generic mode buttons for obvious size input.
+```

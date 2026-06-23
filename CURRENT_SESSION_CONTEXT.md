@@ -1,23 +1,19 @@
-# Hermes Hub — Общий контекст сессии
+# Malyarka — Общий контекст сессии
 
-Дата: 2026-06-21
+Дата: 2026-06-23
+Проект: Malyarka (ранее Hermes Hub / Malyarka Clean)
 
-## Что сделано сегодня
+## Что работает
 
-- Мастер-карта (10 уровней)
-- 10 операционных документов
-- GitHub: toliksoldatov1983-tech/hermes-hub
-- Autostart enabled
-- Phase 2 dry-run пройден, feature flag ON
-- Hermes-чат в Telegram: без кнопок, общение + авто-заказ
-- Obsidian подключён
-- Синхронизация: Hermes ↔ бот ↔ Codex через GitHub
-- **Vision: OpenAI GPT-4o-mini, фото заказов распознаются в Telegram**
+- 🤖 Telegram-бот: active на сервере 178.104.95.187
+- 💬 Hermes-чат в боте: общение без кнопок, авто-заказ
+- 👁️ Vision: OpenAI GPT-4o-mini, распознавание фото заказов
+- 🔄 GitHub: toliksoldatov1983-tech/hermes-hub, авто-pull 5 мин
+- 🧠 Obsidian: подключён
+- 🔑 DeepSeek + OpenAI ключи на сервере
 
-## Статус
+## Что предстоит
 
-- Бот: active/running/enabled
-- Feature flag: ON
-- Vision: работает в Telegram
-- Сервер: 178.104.95.187
-- GitHub: toliksoldatov1983-tech/hermes-hub
+- Malyarka Clean Core (парсер + dispute + area)
+- Агенты (Adapter, Corel, Memory, Diagnostics)
+- Возможно: переименовать GitHub репозиторий

@@ -5850,3 +5850,44 @@ Next safe step:
 ```text
 Hermes Master Map Level 1 — inventory all sources and classify live/local/archive/plans.
 ```
+## 2026-06-23 — TELEGRAM_ORDER_PREVIEW_LOOP_AND_BUTTONS_FIX_CONFIRMED
+
+Status:
+
+```text
+TELEGRAM_ORDER_PREVIEW_LOOP_AND_BUTTONS_FIX_CONFIRMED
+```
+
+The live Telegram bot was fixed after the user reported a loop and three unwanted buttons.
+
+Current verified state:
+
+```text
+server: 178.104.95.187
+service: malyarka-telegram-bot.service
+service state: active/running
+runtime: /opt/malyarka-telegram-bot
+local source: E:\Hermes-Hub\projects\malyarka-runtime-clean
+tests: 441 passed
+user Telegram sanity: order preview appears correctly
+```
+
+What changed:
+
+- obvious order text in neutral mode now parses immediately;
+- the bot no longer forces `/заказ` for normal size input;
+- the persistent three-button mode keyboard is no longer attached as fallback;
+- order result buttons remain: Excel for Corel, Malyarka File, copy for Corel.
+
+Report:
+
+```text
+E:\Hermes-Hub\docs\TELEGRAM_ORDER_PREVIEW_LOOP_AND_BUTTONS_FIX_2026-06-23.md
+```
+
+Rule for future work:
+
+```text
+Do not reintroduce generic mode buttons into normal order preview flow.
+Do not make obvious size text wait for /заказ.
+```
