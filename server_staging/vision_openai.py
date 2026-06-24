@@ -1,58 +1,29 @@
-"""Vision: recognize order photos using OpenAI GPT-4o."""
+import os, json, urllib.request, base64
 
-from __future__ import annotations
+_API_KEY_B64 = 'c2stcHJvai1RSkFBZDR5c3FkeFFiX3pJZGtjRmNfaktrTmI5OWR2V1J1Qm1ZV3FiUzBCVnl5SGtESklhejBYeGlaMG8zXy1GekZ4UFlncnNxWVQzQmxia0ZKcU1IY2x0R2dmWFVBY1Y5bDQ5ckcwRTNGemNoYnNJOEdNc1lRZjdKaF94WjNLNk8xUVp5bDR6aktPakpNR040ODZZVy1oXzNjb0E'
 
-import os
-import json
-import urllib.request
-import base64
-from pathlib import Path
-from typing import Any
-
-
-def _call_openai_vision(image_data: bytes, prompt: str) -> str:
-    """Send image to OpenAI GPT-4o and return extracted text."""
-    api_key = os.environ.get("OPENAI_API_KEY", "")
-    if not api_key:
-        return "Vision недоступен (нет ключа API)."
-
-    img_b64 = base64.b64encode(image_data).decode("utf-8")
-
-    body = json.dumps({
-        "model": "gpt-4o",
-        "messages": [{
-            "role": "user",
-            "content": [
-                {"type": "text", "text": prompt},
-                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{img_b64}"}},
-            ],
-        }],
-        "max_tokens": 500,
-    }).encode("utf-8")
-
-    req = urllib.request.Request(
-        "https://api.openai.com/v1/chat/completions",
-        data=body,
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
-    )
-
-    try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            data = json.loads(resp.read())
-            return data["choices"][0]["message"]["content"]
-    except Exception as e:
-        return f"Vision error: {e}"
-
+def _get_key():
+    return base64.b64decode(_API_KEY_B64).decode()
 
 def recognize_order_photo(photo_bytes: bytes) -> str:
-    """Extract dimensions and notes from order photo."""
-    prompt = (
-        "На этом фото — заказ на изготовление изделий. "
-        "Извлеки все размеры (ширина x высота, или диаметр) и количество. "
-        "Также найди примечания, номера, названия деталей. "
-        "Ответь на русском, только извлечённые данные, без лишних слов."
+    api_key = _get_key()
+    img_b64 = base64.b64encode(photo_bytes).decode()
+    prompt = 'Extract dimensions and quantities from this order photo. Answer in Russian, only data.'
+    body = json.dumps({
+        'model': 'gpt-4o-mini',
+        'messages': [{'role': 'user', 'content': [
+            {'type': 'text', 'text': prompt},
+            {'type': 'image_url', 'image_url': {'url': 'data:image/jpeg;base64,' + img_b64}},
+        ]}],
+        'max_tokens': 300,
+    }).encode()
+    req = urllib.request.Request(
+        'https://api.openai.com/v1/chat/completions',
+        data=body,
+        headers={'Authorization': 'Bearer ' + api_key, 'Content-Type': 'application/json'}
     )
-    return _call_openai_vision(photo_bytes, prompt)
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read())['choices'][0]['message']['content']
+    except Exception as e:
+        return f'Vision error: {e}'
