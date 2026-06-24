@@ -26,6 +26,7 @@ def _call_openai_vision(image_data: bytes, prompt: str) -> str:
                 {"type": "text", "text": prompt},
                 {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{img_b64}"}},
             ],
+        }],
         "max_tokens": 500,
     }).encode("utf-8")
 
