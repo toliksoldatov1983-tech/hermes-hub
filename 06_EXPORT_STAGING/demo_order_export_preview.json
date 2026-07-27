@@ -1,0 +1,27 @@
+{
+  "source_type": "fake_dry_run",
+  "order_title": "demo_order",
+  "created_files": [
+    "demo_order_corel.txt",
+    "demo_order_malyarka.xlsx"
+  ],
+  "content_hashes": {
+    "demo_order_corel.txt": "62604de96afbc617",
+    "demo_order_malyarka.xlsx": "6a8eb599f3963022"
+  },
+  "confirmed_rows_count": 3,
+  "disputed_rows_count": 0,
+  "export_allowed": true,
+  "staging_only": true,
+  "real_order_folder_write_allowed": false,
+  "overwrite_used": false,
+  "delete_used": false,
+  "audit_metadata": {
+    "staging_folder": "C:\\Users\\user\\Desktop\\Hermes-Clean\\06_EXPORT_STAGING",
+    "e_disk_zakazy_touched": false,
+    "corel_launched": false,
+    "artcam_launched": false,
+    "google_drive_touched": false,
+    "env_read": false
+  }
+}

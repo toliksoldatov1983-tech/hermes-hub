@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гермес Клин — Зачистка</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    background: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', system-ui, sans-serif;
+    display: flex; justify-content: center; align-items: center; min-height: 100vh;
+    padding: 20px;
+  }
+  .container { max-width: 1000px; width: 100%; }
+  h1 { text-align: center; font-size: 28px; margin-bottom: 30px; color: #58a6ff; }
+  
+  .grid { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; align-items: start; }
+  
+  .col { display: flex; flex-direction: column; gap: 12px; }
+  .col h2 { font-size: 16px; text-transform: uppercase; letter-spacing: 2px; 
+            padding: 8px 0; border-bottom: 2px solid; margin-bottom: 8px; }
+  .before h2 { color: #f85149; border-color: #f85149; }
+  .after h2 { color: #3fb950; border-color: #3fb950; }
+  
+  .card { 
+    background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+    padding: 14px 16px; font-size: 13px; line-height: 1.5;
+    position: relative; transition: all 0.3s;
+  }
+  .card .name { font-weight: 600; color: #e6edf3; font-size: 14px; }
+  .card .size { color: #8b949e; font-size: 11px; margin-top: 2px; }
+  .card .path { color: #6e7681; font-size: 10px; font-family: 'Consolas', monospace; 
+                word-break: break-all; margin-top: 4px; }
+  .card .status { 
+    display: inline-block; padding: 2px 8px; border-radius: 10px; 
+    font-size: 10px; font-weight: 600; margin-top: 6px;
+  }
+  .status.deleted { background: #f8514922; color: #f85149; }
+  .status.kept { background: #3fb95022; color: #3fb950; }
+  
+  .arrow-col { 
+    display: flex; flex-direction: column; align-items: center; 
+    padding-top: 60px; gap: 8px;
+  }
+  .arrow { color: #f0883e; font-size: 24px; font-weight: bold; }
+  .arrow-sub { color: #6e7681; font-size: 11px; text-align: center; }
+  
+  .stats { 
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; 
+    margin-top: 30px; 
+  }
+  .stat { 
+    background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+    padding: 20px; text-align: center;
+  }
+  .stat .value { font-size: 32px; font-weight: 700; }
+  .stat .label { color: #8b949e; font-size: 12px; margin-top: 4px; }
+  .stat.green .value { color: #3fb950; }
+  .stat.red .value { color: #f85149; }
+  .stat.blue .value { color: #58a6ff; }
+  
+  .footer { text-align: center; color: #484f58; font-size: 11px; margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🧹 Гермес Клин — полная зачистка</h1>
+  
+  <div class="grid">
+    <!-- BEFORE -->
+    <div class="col before">
+      <h2>▸ Было (до)</h2>
+      
+      <div class="card">
+        <div class="name">📁 Hermes-Hub</div>
+        <div class="size">~1 MB + git</div>
+        <div class="path">C:\Users\user\Desktop\Hermes-Hub</div>
+        <div class="status deleted">УДАЛЁН</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">📁 Hermes-Clean</div>
+        <div class="size">26 MB</div>
+        <div class="path">Desktop\прайсы\Hermes-Clean</div>
+        <div class="status deleted">ПЕРЕНЕСЁН</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">🗜 Hermes-Hub.zip</div>
+        <div class="size">3.0 GB</div>
+        <div class="path">Desktop\прайсы\</div>
+        <div class="status deleted">УДАЛЁН</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">🗜 Hermes-General.zip</div>
+        <div class="size">2.0 GB</div>
+        <div class="path">Desktop\прайсы\</div>
+        <div class="status deleted">УДАЛЁН</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">🗜 Hermes-Clean-RC2.zip</div>
+        <div class="size">759 KB</div>
+        <div class="path">Desktop\прайсы\</div>
+        <div class="status deleted">УДАЛЁН</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">📁 OLD_HERMES_QUARANTINE</div>
+        <div class="size">52 MB</div>
+        <div class="path">Desktop\прайсы\</div>
+        <div class="status deleted">УДАЛЁН</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">📁 Malyarka_Bot_Service</div>
+        <div class="size">~500 KB</div>
+        <div class="path">Documents\Codex\</div>
+        <div class="status deleted">УДАЛЁН</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">🔑 SSH-ключи сервера</div>
+        <div class="size">2 файла</div>
+        <div class="path">~/.ssh/hermes_clean_*</div>
+        <div class="status deleted">УДАЛЁН</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">🗂 7 бекапов + архивы</div>
+        <div class="size">~20 MB</div>
+        <div class="path">Внутри проекта</div>
+        <div class="status deleted">УДАЛЁН</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">📄 ~600 строк «Hub»</div>
+        <div class="size">в 300+ .md файлах</div>
+        <div class="path">По всему проекту</div>
+        <div class="status deleted">ЗАЧИЩЕН</div>
+      </div>
+    </div>
+    
+    <!-- ARROW -->
+    <div class="arrow-col">
+      <div class="arrow">→</div>
+      <div class="arrow-sub">5.1 GB<br>мусора</div>
+      <div class="arrow">→</div>
+      <div class="arrow-sub">17 папок<br>удалено</div>
+      <div class="arrow">→</div>
+      <div class="arrow-sub">600+ строк<br>зачищено</div>
+      <div class="arrow">→</div>
+    </div>
+    
+    <!-- AFTER -->
+    <div class="col after">
+      <h2>▸ Стало (после)</h2>
+      
+      <div class="card">
+        <div class="name">📁 Гермес Клин</div>
+        <div class="size">~26 MB</div>
+        <div class="path">C:\Users\user\Documents\«Гермес Клин»</div>
+        <div class="status kept">ЕДИНСТВЕННЫЙ</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">📋 AGENTS.md</div>
+        <div class="size">обновлён</div>
+        <div class="path">Без упоминаний Hub, бота, сервера</div>
+        <div class="status kept">АКТУАЛЕН</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">🧠 Память (00_MEMORY)</div>
+        <div class="size">без ссылок на старые проекты</div>
+        <div class="path">Только «Гермес Клин»</div>
+        <div class="status kept">ЧИСТО</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">📚 Документация (docs/)</div>
+        <div class="size">правила, карты, LNC-тюнинг</div>
+        <div class="path">Всё нужное из Hub перенесено</div>
+        <div class="status kept">ЧИСТО</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">⚙️ Провайдер</div>
+        <div class="size">openai-codex / gpt-5.6-sol</div>
+        <div class="path">config.yaml</div>
+        <div class="status kept">НАСТРОЕН</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">📱 Telegram-бот</div>
+        <div class="size">отключён</div>
+        <div class="path">сервер удалён</div>
+        <div class="status kept">ОТЛОЖЕН</div>
+      </div>
+      
+      <div class="card">
+        <div class="name">💻 Hermes Desktop</div>
+        <div class="size">локально</div>
+        <div class="path">основной интерфейс</div>
+        <div class="status kept">РАБОТАЕТ</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat red">
+      <div class="value">5.1 GB</div>
+      <div class="label">удалено мусора</div>
+    </div>
+    <div class="stat blue">
+      <div class="value">17</div>
+      <div class="label">папок/файлов удалено</div>
+    </div>
+    <div class="stat green">
+      <div class="value">1</div>
+      <div class="label">проект остался</div>
+    </div>
+  </div>
+  
+  <div class="footer">28 июля 2026 · Гермес Клин · Чистая посадка</div>
+</div>
+</body>
+</html>

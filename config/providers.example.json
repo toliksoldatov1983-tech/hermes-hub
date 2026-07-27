@@ -1,0 +1,6 @@
+{
+  "primary": "gemini",
+  "fallback": "deepseek_or_deepsig",
+  "active_without_secrets": "mock",
+  "secret_policy": "environment_variables_only"
+}

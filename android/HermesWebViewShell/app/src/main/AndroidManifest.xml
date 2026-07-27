@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hermes.webview">
+
+    <!-- Safe-local mode: only INTERNET for localhost -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Blocked: no ACCESS_NETWORK_STATE (unnecessary for localhost) -->
+    <!-- Blocked: no ACCESS_FINE_LOCATION -->
+    <!-- Blocked: no CAMERA, MICROPHONE, STORAGE -->
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.HermesWebViewShell"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

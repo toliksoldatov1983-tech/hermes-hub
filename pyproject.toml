@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "hermes-clean"
+version = "2.0.0"
+description = "Hermes-Clean — локальная dry-run среда для ассистента Hermes (Маларка)"
+requires-python = ">=3.10"
+authors = [
+    {name = "Hermes Team"},
+]
+license = {text = "MIT"}
+
+# Проект использует ТОЛЬКО стандартную библиотеку Python.
+# Никаких внешних зависимостей не требуется.
+dependencies = []
+
+[project.scripts]
+hermes = "hermes_core.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["hermes_core*", "hermes_clean*", "hermes_modules*"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]

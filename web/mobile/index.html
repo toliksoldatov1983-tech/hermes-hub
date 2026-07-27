@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hermes-Clean</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <span class="logo">⚡ Hermes-Clean</span>
+        <span id="header-status" class="badge">safe-local</span>
+    </header>
+
+    <!-- Screens -->
+    <main id="screens">
+        <!-- HOME -->
+        <section id="screen-home" class="screen active">
+            <h2>Главная</h2>
+            <div class="card status-card">
+                <div class="status-row"><span>Режим:</span><span id="home-mode" class="value">—</span></div>
+                <div class="status-row"><span>API:</span><span id="home-api" class="value">—</span></div>
+                <div class="status-row"><span>Тесты:</span><span id="home-tests" class="value">—</span></div>
+                <div class="status-row"><span>Следующий:</span><span id="home-next" class="value">—</span></div>
+            </div>
+            <div class="grid-2">
+                <button class="nav-btn" data-screen="assistant">🤖 Ассистент</button>
+                <button class="nav-btn" data-screen="malyarka">🎨 Малярка</button>
+                <button class="nav-btn" data-screen="status">📊 Статус</button>
+                <button class="nav-btn" data-screen="checks">✅ Проверки</button>
+                <button class="nav-btn" data-screen="ai-provider">🧠 AI Provider</button>
+                <button class="nav-btn" data-screen="safety">🔒 Safety</button>
+            </div>
+            <div class="warning-box">⚠️ Live функции выключены. Safe-local mode.</div>
+        </section>
+
+        <!-- ASSISTANT -->
+        <section id="screen-assistant" class="screen">
+            <h2>🤖 Ассистент</h2>
+            <div id="assistant-content">
+                <div class="card"><p>Загрузка...</p></div>
+            </div>
+            <button class="action-btn" id="btn-assistant-load">🔄 Загрузить daily-assistant</button>
+        </section>
+
+        <!-- MALYARKA -->
+        <section id="screen-malyarka" class="screen">
+            <h2>🎨 Малярка</h2>
+            <div class="card">
+                <label>Текст заказа (dry-run):</label>
+                <textarea id="malyarka-input" rows="4" placeholder="paint | 2 | bucket&#10;roller | 3 | piece"></textarea>
+                <button class="action-btn" id="btn-malyarka-parse">🔍 Разобрать (dry-run)</button>
+            </div>
+            <div id="malyarka-result" class="card" style="display:none"></div>
+            <div id="malyarka-status-card" class="card"></div>
+        </section>
+
+        <!-- STATUS -->
+        <section id="screen-status" class="screen">
+            <h2>📊 Статус проекта</h2>
+            <div id="status-content"><div class="card"><p>Загрузка...</p></div></div>
+        </section>
+
+        <!-- CHECKS -->
+        <section id="screen-checks" class="screen">
+            <h2>✅ Проверки</h2>
+            <div id="checks-content"><div class="card"><p>Загрузка...</p></div></div>
+        </section>
+
+        <!-- AI PROVIDER -->
+        <section id="screen-ai-provider" class="screen">
+            <h2>🧠 AI Provider</h2>
+            <div id="ai-provider-content"><div class="card"><p>Загрузка...</p></div></div>
+        </section>
+
+        <!-- SAFETY -->
+        <section id="screen-safety" class="screen">
+            <h2>🔒 Safety / Approval Gates</h2>
+            <div id="safety-content"><div class="card"><p>Загрузка...</p></div></div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section id="screen-settings" class="screen">
+            <h2>⚙️ Настройки</h2>
+            <div class="card">
+                <label>API URL:</label>
+                <input type="text" id="settings-api-url" value="http://127.0.0.1:8514" placeholder="http://127.0.0.1:8514">
+                <button class="action-btn" id="btn-settings-save">💾 Сохранить</button>
+                <p id="settings-warning" class="warning-text" style="display:none"></p>
+            </div>
+            <div class="card">
+                <p>Версия: <strong>1.0</strong></p>
+                <p>Safe-local mode</p>
+                <p>Android app: ❌ не создано</p>
+                <p>LAN/external: ❌ disabled</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Nav -->
+    <nav id="bottom-nav">
+        <button class="nav-tab active" data-screen="home">🏠</button>
+        <button class="nav-tab" data-screen="assistant">🤖</button>
+        <button class="nav-tab" data-screen="malyarka">🎨</button>
+        <button class="nav-tab" data-screen="status">📊</button>
+        <button class="nav-tab" data-screen="settings">⚙️</button>
+    </nav>
+
+    <script src="api_client.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

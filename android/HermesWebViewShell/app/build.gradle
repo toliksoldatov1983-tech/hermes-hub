@@ -1,0 +1,46 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.hermes.webview'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.hermes.webview"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0-safe-local"
+
+        // No production signing — debug only
+    }
+
+    buildTypes {
+        debug {
+            // Debug build only. No production signing.
+            // No minification, no obfuscation — transparency for safe-local.
+        }
+        release {
+            // NOT configured. Production APK is not the goal.
+            // Requires proper signing keys and APPROVE_PRODUCTION_RELEASE gate.
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+
+    // NO analytics SDK
+    // NO tracking SDK
+    // NO advertising SDK
+    // NO external API libraries
+}

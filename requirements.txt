@@ -1,0 +1,11 @@
+# Hermes-Clean requirements
+# Проект использует только стандартную библиотеку Python 3.10+
+# Никаких внешних зависимостей не требуется.
+# Для запуска тестов: pip install pytest
+#
+# Полная установка:
+#   pip install -r requirements.txt
+#
+# Быстрая установка только pytest:
+#   pip install pytest
+pytest>=7.0

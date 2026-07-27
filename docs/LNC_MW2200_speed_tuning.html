@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>LNC MW2200 Speed Tuning</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">LNC MW2200 Speed Tuning</h1>
+</header>
+<h1
+id="безопасное-повышение-подачи-реза-на-lnc-mw2200-для-2d-и-3d-обработки">Безопасное
+повышение подачи реза на LNC MW2200 для 2D и 3D обработки</h1>
+<h2 id="executive-summary">Executive summary</h2>
+<p>На вашем станке с LNC MW2200A скорость резания ограничивается не
+одной-двумя настройками, а минимумом из нескольких уровней ограничений:
+активный AIC-профиль, глобальные лимиты G01, ограничения по осям, логика
+прохождения углов и коротких сегментов, а также режимы точной остановки
+и сглаживания. Сам контроллер MW2200A — это 3-осевой pulse-command
+контроллер с одним каналом траектории, VGA-выходом и поддержкой ReCON, а
+разделы параметров скорости и high-speed/high-precision в системе прямо
+предназначены для настройки скорости, ускорения и качества
+траектории.</p>
+<p>По вашему экрану уже видно ключевую вещь: в профиле CABINET стоят
+существенно более «медленные» path-параметры, чем в DOOR. В частности, у
+CABINET низкие 5mm Arc Max Feedrate, Arc Clamping Min Feedrate, Corner
+Referential Feedrate и ниже 1st Path Max Cutting Feedrate. Это означает,
+что прежде чем трогать глубокие системные параметры, надо сначала
+проверить, какой AIC-профиль реально активен, и испытать отдельный
+тестовый профиль для 2D и 3D. После изменения значений LNC требует
+повторно выбрать профиль через PROG → Program Check → SEL AIC, иначе
+изменения не вступят в силу.</p>
+<p>Для вашего конкретного 3D-файла главный вывод такой: он построен из
+многих коротких отрезков G1, а не из G2/G3. В присланном фрагменте
+типичная длина сегмента — менее 1 мм, медиана около 0,58 мм, средняя
+около 0,93 мм, минимум около 0,14 мм. При подаче F12000 это означает,
+что контроллеру часто приходится обрабатывать следующий сегмент каждые
+0,7–4,7 мс. Поэтому на 3D сильнее всего влияют corner handling,
+ускорение/замедление, сглаживание, точная остановка G61/G64, curve
+fitting, лимиты по Y/Z, а дуговые параметры важны в основном для
+программ с реальными G2/G3. Это и объясняет, почему на 3D станок может
+ехать намного медленнее заданного F. При этом LNC отдельно поддерживает
+AIC-II профили высокоскоростной/высокоточной обработки и параметр curve
+fitting tolerance, а также пользовательский параметр curve surface
+cutting feedrate speed fix именно для криволинейных поверхностей.</p>
+<p>Практический приоритет такой. Для 2D сначала поднимают потолок подачи
+и угловую скорость: 1st Path Max Cutting Feedrate, глобальный G01 max
+speed, затем Corner Referential Feedrate, затем — при необходимости —
+линейное ускорение реза, и только после этого дуговые параметры, если
+программа реально содержит G2/G3. Для 3D приоритет другой: сначала
+проверить активный профиль, режим G64, отсутствие лишнего exact stop,
+затем Corner Referential Feedrate, глобальный G01 max speed, лимиты Y/Z,
+после этого аккуратно уменьшать Cutting Linear Acc/Dec Time, а параметры
+Curve Fitting Tolerance и Curve surface Cutting feedrate speed fix
+использовать уже как второй этап. В обоих случаях не следует сразу
+менять низкоуровневые servo loop параметры и не следует опускать время
+разгона слишком резко, потому что документация LNC прямо предупреждает:
+чем меньше время Acc/Dec, тем быстрее разгон, но тем выше риск вибрации
+и ошибок по параметрам.</p>
+<p>Неопределённости, которые пока нельзя считать известными: мощность
+приводов, тип привода рейка/ШВП, масса портала, closed-loop/open-loop
+конкретной механики, реальные лимиты осей Y и Z, а также то, какой
+профиль AIC активируется перед запуском программы. Пока это неизвестно,
+безопасная стратегия — не копировать вслепую DOOR в CABINET, а сделать
+отдельный профиль и идти короткими шагами с воздушным прогоном и записью
+диагностики.</p>
+<hr />
+<h2 id="что-именно-сейчас-ограничивает-скорость">Что именно сейчас
+ограничивает скорость</h2>
+<p>LNC MW2200A относится к линейке деревообрабатывающих контроллеров; по
+официальной странице это 3 оси, 1 Control Path, VGA Video Output,
+поддержка ReCON. В руководстве MW-серии сказано, что в системе есть
+отдельные страницы Speed setting и High-speed &amp; high-precision,
+причём первая отвечает за скорости/ускорения по осям, а вторая — за
+параметры пути и осей, влияющие на качество и скорость обработки. Для
+MW2200A руководством также отмечено, что раздел servo parameters
+рассчитан на bus drive, а pulse driver для прямой такой настройки не
+подходит.</p>
+<p>По присланному экрану видно два AIC-профиля: CABINET и DOOR. У
+CABINET на path-параметрах стоят значения: Linear 500, Bell 80, 5mm Arc
+150, Arc Clamping Min 1, Corner Referential 80, 1st Path Max Cutting
+Feedrate 10000. У DOOR: Linear 500, Bell 80, 5mm Arc 3000, Arc Clamping
+Min 50, Corner Referential 200, 1st Path Max Cutting Feedrate 15000. Это
+уже само по себе объясняет, почему один профиль может ехать заметно
+быстрее другого на одной и той же механике.</p>
+<p>В документации LNC AIC-II эта страница описана как набор до 40
+материалов/профилей с индивидуальными параметрами high speed / high
+precision. Для AIC-II доступны, в частности, Cutting linear ACC/DEC
+time, Cutting bell shape ACC/DEC time, Cutting smooth ACC/DEC time,
+Circular clamp speed, Circular clamp min speed, Corner reference speed,
+а также feedforward и loop gains. После изменения значения профиль нужно
+переизбрать через Select AIC, чтобы изменения применились.</p>
+<p>Ваш G-code-фрагмент для 3D содержит длинную последовательность G1 с
+малыми изменениями прежде всего по Y и Z. Сам по себе комментарий (FEED
+RATES IN INCHES PER MINUTE) ничего не переключает; единицы задаются
+командами G20/G21, а единицы подачи — G94/G95. По LNC, G21 должен
+задаваться отдельным блоком в заголовке программы, а G94 определяет
+единицы F для G01/G02/G03 как мм/мин или дюйм/мин в зависимости от
+системы единиц. По G61/G64 LNC прямо указывает: G61 — exact positioning,
+G64 — общий режим резания, и G64 является режимом по умолчанию, пока не
+был объявлен G61.</p>
+<p>Это важно по двум причинам. Во-первых, если в системе или в программе
+случайно активирован G61 либо exact stop, контроллер будет заметно
+тормозить на переходах. Во-вторых, в ваших 3D-данных короткие сегменты
+сами по себе вынуждают planner снижать фактическую скорость. Для такой
+траектории наиболее вероятные ограничения — угловая обработка,
+acceleration/deceleration, curve fitting, exact stop, Y/Z axis limits, а
+не 5mm Arc Max Feedrate, потому что этот параметр относится прежде всего
+к дуговой интерполяции. Документация также описывает Curve fitting
+tolerance с диапазоном -1…10 мкм, где -1 означает выключено, а
+пользовательский параметр Curve surface Cutting feedrate speed fix
+позволяет отдельно включать коррекцию подачи на криволинейной
+поверхности.</p>
+<p>Дополнительный системный потолок для любой линейной резки задаёт
+параметр 1004 G01 MAX. SPEED OF LINEAR CUTTING. Руководство прямо
+указывает его как глобальный максимум линейной резки, а страницы
+MW-серии отдельно показывают, что Speed setting содержит поосевые
+G00/G01 лимиты. Поэтому фактическая подача всегда будет не выше минимума
+из: F в программе, AIC profile max cutting, parameter 1004, Y/Z axis
+speed limits, допустимой динамики траектории.</p>
+<hr />
+<h2 id="приоритетные-параметры-для-2d-и-3d">Приоритетные параметры для
+2D и 3D</h2>
+<h3 id="базовые-принципы-выбора-параметров">Базовые принципы выбора
+параметров</h3>
+<p>Для 2D и 3D приоритеты различаются. На 2D-профилях и пазах с длинными
+прямыми участками выше отдача от увеличения максимально разрешённой
+подачи и умеренного уменьшения времени разгона. На 3D-рельефе с
+короткими G1 важнее способность пройти последовательность коротких
+блоков без постоянного торможения, то есть более критичны угловая
+скорость, непрерывный режим резания, curve fitting, Y/Z limits и плавная
+кинематика. Это соответствует структуре AIC-II и G64/G61 в LNC.</p>
+<h3 id="приоритет-для-2d">Приоритет для 2D</h3>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 16%" />
+<col style="width: 34%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr>
+<th>Приоритет</th>
+<th>Параметр</th>
+<th>Почему важен для 2D</th>
+<th>Что делать сначала</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Высокий</td>
+<td>1st Path Max Cutting Feedrate</td>
+<td>Если он ниже F в программе, контроллер режет не быстрее профиля</td>
+<td>Поднять до уровня реальной целевой подачи</td>
+</tr>
+<tr>
+<td>Высокий</td>
+<td>1004 G01 MAX. SPEED OF LINEAR CUTTING</td>
+<td>Глобальный предел линейной резки</td>
+<td>Проверить, что он не ниже целевой подачи</td>
+</tr>
+<tr>
+<td>Высокий</td>
+<td>Corner Referential Feedrate</td>
+<td>Уменьшает торможение в углах и на переходах</td>
+<td>Поднимать умеренно, без рывка</td>
+</tr>
+<tr>
+<td>Средний</td>
+<td>Cutting Linear Acc/Dec Time</td>
+<td>Быстрее добирается до целевой подачи на прямых</td>
+<td>Уменьшать пошагово</td>
+</tr>
+<tr>
+<td>Средний</td>
+<td>5mm Arc Max Feedrate</td>
+<td>Важен, если программа реально использует G2/G3</td>
+<td>Поднимать только если есть дуги</td>
+</tr>
+<tr>
+<td>Средний</td>
+<td>Arc Clamping Min Feedrate</td>
+<td>Не даёт излишне проседать на дугах</td>
+<td>Поднимать только вместе с Arc Max</td>
+</tr>
+<tr>
+<td>Низкий</td>
+<td>Curve Fitting Tolerance</td>
+<td>Для 2D чаще не самый главный фактор</td>
+<td>Не трогать, если 2D и так гладкий</td>
+</tr>
+</tbody>
+</table>
+<h3 id="приоритет-для-3d">Приоритет для 3D</h3>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 16%" />
+<col style="width: 34%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr>
+<th>Приоритет</th>
+<th>Параметр</th>
+<th>Почему важен для 3D</th>
+<th>Что делать сначала</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Очень высокий</td>
+<td>Активный SEL AIC профиль</td>
+<td>Если активен CABINET, вы уже стартуете с более жёсткими
+ограничениями</td>
+<td>Проверить и зафиксировать активный профиль</td>
+</tr>
+<tr>
+<td>Очень высокий</td>
+<td>G64 и отсутствие лишнего exact stop</td>
+<td>Exact stop резко тормозит на коротких блоках</td>
+<td>Явно задать G64; проверить G61/G09 и флаг exact check</td>
+</tr>
+<tr>
+<td>Очень высокий</td>
+<td>Corner Referential Feedrate</td>
+<td>Главный параметр против падения скорости на коротких сменах
+направления</td>
+<td>Поднимать раньше разгона</td>
+</tr>
+<tr>
+<td>Очень высокий</td>
+<td>1004 G01 MAX. SPEED OF LINEAR CUTTING и Y/Z axis G01 limits</td>
+<td>3D-файл у вас в основном двигает Y и Z</td>
+<td>Проверить Y/Z раньше X</td>
+</tr>
+<tr>
+<td>Высокий</td>
+<td>Cutting Linear Acc/Dec Time</td>
+<td>Позволяет меньше терять скорость между короткими блоками</td>
+<td>Уменьшать небольшими шагами</td>
+</tr>
+<tr>
+<td>Высокий</td>
+<td>Curve Fitting Tolerance</td>
+<td>Помогает не дёргаться на множестве малых G1</td>
+<td>Включать только после базовой стабилизации</td>
+</tr>
+<tr>
+<td>Средний</td>
+<td>Curve surface Cutting feedrate speed fix</td>
+<td>Специальный пользовательский параметр для криволинейной
+поверхности</td>
+<td>Тестировать отдельно 0→1</td>
+</tr>
+<tr>
+<td>Средний</td>
+<td>Cutting Bell / Smooth Acc/Dec Time</td>
+<td>Меняет форму нарастания ускорения и мягкость</td>
+<td>Трогать после corner/linear</td>
+</tr>
+<tr>
+<td>Низкий</td>
+<td>5mm Arc Max / Arc Clamping Min</td>
+<td>Для вашего файла из G1 — не главный фактор</td>
+<td>Оставить на потом</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2
+id="рекомендуемые-безопасные-тестовые-шаги-для-path-параметров">Рекомендуемые
+безопасные тестовые шаги для path-параметров</h2>
+<p>Ниже — не «максимумы станка», а безопасные ступени для испытаний. Они
+опираются на структуру LNC AIC-II, диапазоны параметров в руководстве и
+на то, что заводской профиль DOOR уже использует более высокие значения
+без выхода за рамки системы. Диапазоны AIC-II для path-параметров
+документированы: Linear/Bell/Smooth — 0…1000 мс, Corner reference speed
+— 0…200000000 um/min, round speed lock и minimum — 100…200000000 um/min,
+Curve fitting tolerance — -1…10 мкм.</p>
+<h3 id="ступени-для-2d-профиля">Ступени для 2D-профиля</h3>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 17%" />
+<col style="width: 14%" />
+<col style="width: 23%" />
+<col style="width: 18%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>CABINET сейчас</th>
+<th>DOOR сейчас</th>
+<th>Консервативный тест</th>
+<th>Усиленный тест</th>
+<th>Комментарий</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1st Path Max Cutting Feedrate</td>
+<td>10000</td>
+<td>15000</td>
+<td>12000</td>
+<td>15000</td>
+<td>Сначала хотя бы не ниже F12000</td>
+</tr>
+<tr>
+<td>Cutting Linear Acc/Dec Time</td>
+<td>500</td>
+<td>500</td>
+<td>450 → 400</td>
+<td>350 → 300</td>
+<td>Ниже 300 без данных по механике не рекомендую</td>
+</tr>
+<tr>
+<td>Cutting Bell Acc/Dec Time</td>
+<td>80</td>
+<td>80</td>
+<td>80</td>
+<td>60–100</td>
+<td>Обычно лучше трогать позже</td>
+</tr>
+<tr>
+<td>Cutting Smooth Acc/Dec Time</td>
+<td>неизвестно</td>
+<td>неизвестно</td>
+<td>не менять</td>
+<td>0–20, если страдает мягкость</td>
+<td>Сначала сфотографировать страницу полностью</td>
+</tr>
+<tr>
+<td>5mm Arc Max Feedrate</td>
+<td>150</td>
+<td>3000</td>
+<td>1000 → 2000</td>
+<td>3000</td>
+<td>Актуально только если в 2D есть G2/G3</td>
+</tr>
+<tr>
+<td>Arc Clamping Min Feedrate</td>
+<td>1</td>
+<td>50</td>
+<td>30</td>
+<td>50</td>
+<td>Поднимать вместе с Arc Max</td>
+</tr>
+<tr>
+<td>Corner Referential Feedrate</td>
+<td>80</td>
+<td>200</td>
+<td>120 → 150</td>
+<td>200 → 250</td>
+<td>Хороший «быстрый» выигрыш без резкого разгона</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ступени-для-3d-профиля">Ступени для 3D-профиля</h3>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 17%" />
+<col style="width: 14%" />
+<col style="width: 23%" />
+<col style="width: 18%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>CABINET сейчас</th>
+<th>DOOR сейчас</th>
+<th>Консервативный тест</th>
+<th>Усиленный тест</th>
+<th>Комментарий</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Активный AIC профиль</td>
+<td>неизвестно</td>
+<td>—</td>
+<td>выбрать отдельный test-3D</td>
+<td>отдельный test-3D</td>
+<td>Не редактировать рабочий CABINET вслепую</td>
+</tr>
+<tr>
+<td>1st Path Max Cutting Feedrate</td>
+<td>10000</td>
+<td>15000</td>
+<td>12000</td>
+<td>13000–15000</td>
+<td>Должен не душить ваш F</td>
+</tr>
+<tr>
+<td>Corner Referential Feedrate</td>
+<td>80</td>
+<td>200</td>
+<td>150 → 200</td>
+<td>250 → 350</td>
+<td>Главный рычаг на коротких G1</td>
+</tr>
+<tr>
+<td>Cutting Linear Acc/Dec Time</td>
+<td>500</td>
+<td>500</td>
+<td>450 → 400</td>
+<td>350 → 300</td>
+<td>Делать после corner</td>
+</tr>
+<tr>
+<td>Cutting Bell Acc/Dec Time</td>
+<td>80</td>
+<td>80</td>
+<td>80</td>
+<td>60–100</td>
+<td>Менять только после проверки вибрации</td>
+</tr>
+<tr>
+<td>Cutting Smooth Acc/Dec Time</td>
+<td>неизвестно</td>
+<td>неизвестно</td>
+<td>не менять</td>
+<td>20–40, если видно ударность</td>
+<td>Только после фото всей страницы</td>
+</tr>
+<tr>
+<td>Curve Fitting Tolerance</td>
+<td>неизвестно</td>
+<td>неизвестно</td>
+<td>-1 → 3 µm</td>
+<td>5 → 8 µm</td>
+<td>Включать только под контролем качества поверхности</td>
+</tr>
+<tr>
+<td>Curve surface feedrate speed fix</td>
+<td>неизвестно</td>
+<td>неизвестно</td>
+<td>0 → 1</td>
+<td>1</td>
+<td>Отдельный тест, не вместе со всеми параметрами</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="что-делать-с-поосевыми-лимитами">Что делать с поосевыми
+лимитами</h2>
+<p>Ваш 3D-файл нагружает в основном Y и Z, поэтому именно они должны
+проверяться первыми. Руководство MW-серии говорит, что Speed setting
+содержит поосевые ускорения/замедления, G00 max speed, G01 max speed, а
+High-speed &amp; high-precision делится на path parameters и axis
+parameters. При этом на вашем фото видна только страница для X: X Axis
+Cutting Feed Linear Acc/Dec Time in Position Mode = 80, X Axis Cutting
+Feed S Curve Acc/Dec Time in Position Mode = 0, а X Axis Rapid Max
+Feedrate отличается между профилями. Но для решения именно вашей
+3D-проблемы этого недостаточно — нужны Y и Z.</p>
+<p>Практическое правило здесь такое. Если целевая 3D-подача — 12000
+мм/мин, а Y/Z по своим G01 max или axis-accel параметрам ограничены ниже
+того, что требует траектория, то никакая path-настройка не заставит
+станок реально ехать быстрее. Поэтому для Y и особенно Z действуйте
+осторожнее: Z обычно должна оставаться более консервативной, чем Y,
+потому что именно она в 3D чаще провоцирует ударность, перегрузку и
+дефекты поверхности. Это уже инженерный вывод из вашей траектории и из
+структуры LNC speed pages.</p>
+<hr />
+<h2 id="рекомендуемая-процедура-тестов">Рекомендуемая процедура
+тестов</h2>
+<h3 id="порядок-испытаний">Порядок испытаний</h3>
+<p>Контроллер LNC позволяет хранить разные AIC-профили и требует
+переизбрать профиль после изменения. Кроме того, в MDI и Program Check
+предусмотрены безопасные режимы проверки программы. Из-за неизвестной
+механики станка лучшая стратегия — не переписывать рабочий профиль, а
+завести отдельный тестовый профиль и идти короткими итерациями.</p>
+<pre><code>Снять backup параметров и фото всех страниц
+         ↓
+Проверить активный профиль через SEL AIC
+         ↓
+Создать отдельный test-2D или test-3D профиль
+         ↓
+Изменить только 1-2 параметра
+         ↓
+Воздушный прогон 25%
+         ↓
+    ┌─ Есть вибрация, alarms, толчки? ──── Да ──→ Откатить последний шаг и записать симптомы
+    │
+   Нет
+    ↓
+Воздушный прогон 50%, 75%, 100%
+         ↓
+    ┌─ Фактическая подача выросла? ──── Нет ──→ Проверить G64/G61, exact stop, Y/Z limits, active AIC
+    │
+    Да
+    ↓
+Контрольный рез на небольшом участке
+         ↓
+Записать качество поверхности и фактическую подачу
+         ↓
+Следующая маленькая ступень</code></pre>
+<h3 id="конкретная-последовательность">Конкретная
+последовательность</h3>
+<p>Сначала сделайте backup. В LNC есть штатные средства экспорта
+параметров и файлов, а для диагностики предусмотрены также Operation
+history record и Data Recorder. Для истории операций параметр 395
+позволяет включить запись истории, а 653 — активировать Data
+Recorder.</p>
+<p>Далее зафиксируйте исходное состояние:</p>
+<ol type="1">
+<li>Сфотографировать все страницы path parameters и axis
+parameters.</li>
+<li>Сфотографировать Speed setting по X, Y, Z.</li>
+<li>Сфотографировать PROG → Program Check → SEL AIC.</li>
+<li>Сохранить копию тестовой программы и добавить в её заголовок явные
+G21, G94, G64, если их нет.</li>
+</ol>
+<p>Для заголовка тестовой программы безопасно использовать такой
+шаблон:</p>
+<pre><code>G21
+G90 G94 G64
+G49 G40 G80
+G54</code></pre>
+<p>Это соответствует правилам LNC: G21 задаётся отдельным блоком до
+системы координат, G94 определяет единицы подачи для G01/G02/G03, G64
+включает общий непрерывный режим резания.</p>
+<p>После этого:</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 35%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr>
+<th>Шаг</th>
+<th>Что меняем</th>
+<th>Как тестируем</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Первый</td>
+<td>Выбор test-профиля, без изменения сервопараметров</td>
+<td>Воздушный прогон 25%</td>
+</tr>
+<tr>
+<td>Второй</td>
+<td>Только Max Cutting и Corner Reference</td>
+<td>Воздух 25% → 50% → 75% → 100%</td>
+</tr>
+<tr>
+<td>Третий</td>
+<td>Только Linear Acc/Dec</td>
+<td>Повторить тот же маршрут</td>
+</tr>
+<tr>
+<td>Четвёртый</td>
+<td>Только Curve Fitting или Curve Surface Speed Fix</td>
+<td>Малый фрагмент 3D, отдельный тест</td>
+</tr>
+<tr>
+<td>Пятый</td>
+<td>Контрольный рез по материалу</td>
+<td>Сравнить шум, поверхность, фактическую скорость</td>
+</tr>
+</tbody>
+</table>
+<h3 id="что-контролировать-во-время-каждого-теста">Что контролировать во
+время каждого теста</h3>
+<p>Смотреть нужно не только на «процент подачи» на экране, а на
+фактическое поведение машины. Для этого записывайте:</p>
+<ul>
+<li>фактическую подачу на экране и её стабильность;</li>
+<li>есть ли резкие просадки на переходах;</li>
+<li>звук портала и оси Z;</li>
+<li>вибрацию, дрожание, «песню» на Y;</li>
+<li>alarms / warnings / MOT-сообщения;</li>
+<li>температуру привода и шпинделя после серии проходов;</li>
+<li>качество поверхности: волна, ступеньки, поджоги, мохра.</li>
+</ul>
+<p>Если фактическую подачу экраном оценить трудно, измеряйте её по
+формуле:</p>
+<blockquote>
+<p>средняя подача = пройденное расстояние / время × 60</p>
+</blockquote>
+<p>Например, берёте участок длиной 300 мм по Y, запускаете в воздухе,
+замеряете время секундомером и считаете мм/мин. Такой ручной замер
+иногда полезнее процента override.</p>
+<hr />
+<h2 id="как-понять-что-проблема-не-в-aic-а-в-exact-stop">Как понять, что
+проблема не в AIC, а в exact stop</h2>
+<p>У LNC G61 — exact positioning, G64 — general cutting mode, причём G64
+является режимом по умолчанию. Дополнительно параметр 43 FLAG OF EXACT
+CHECK позволяет по битам включать/выключать exact stop для G01/G00, и
+manual прямо говорит: для G01 режим exact stop требует не только
+соответствующего бита, но и G09 либо G61; отменяется он G64. Если после
+всех разумных изменений подача всё равно катастрофически падает на
+каждой точке, проверьте именно эту группу.</p>
+<hr />
+<h2 id="рекомендуемые-итоговые-диапазоны-настройки">Рекомендуемые
+итоговые диапазоны настройки</h2>
+<p>Ниже — рабочие диапазоны, а не универсальные пределы. Их следует
+понимать как ориентир после успешных ступенчатых испытаний, а не как
+значения для немедленного ввода.</p>
+<h3 id="консервативная-настройка">Консервативная настройка</h3>
+<table>
+<thead>
+<tr>
+<th>Группа</th>
+<th>2D</th>
+<th>3D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1st Path Max Cutting Feedrate</td>
+<td>10000–12000</td>
+<td>10000–12000</td>
+</tr>
+<tr>
+<td>Corner Referential Feedrate</td>
+<td>120–200</td>
+<td>150–220</td>
+</tr>
+<tr>
+<td>Cutting Linear Acc/Dec Time</td>
+<td>400–500 мс</td>
+<td>400–500 мс</td>
+</tr>
+<tr>
+<td>Cutting Bell Acc/Dec Time</td>
+<td>80 мс</td>
+<td>80 мс</td>
+</tr>
+<tr>
+<td>Cutting Smooth Acc/Dec Time</td>
+<td>как есть / 0–20</td>
+<td>как есть / 0–20</td>
+</tr>
+<tr>
+<td>5mm Arc Max Feedrate</td>
+<td>1000–3000</td>
+<td>не приоритет</td>
+</tr>
+<tr>
+<td>Arc Clamping Min Feedrate</td>
+<td>30–50</td>
+<td>не приоритет</td>
+</tr>
+<tr>
+<td>Curve Fitting Tolerance</td>
+<td>-1 или 3 мкм</td>
+<td>3 мкм</td>
+</tr>
+<tr>
+<td>Curve surface speed fix</td>
+<td>0</td>
+<td>0 или 1 после теста</td>
+</tr>
+</tbody>
+</table>
+<h3 id="агрессивная-настройка">Агрессивная настройка</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Группа</th>
+<th>2D</th>
+<th>3D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1st Path Max Cutting Feedrate</td>
+<td>12000–15000</td>
+<td>12000–15000</td>
+</tr>
+<tr>
+<td>Corner Referential Feedrate</td>
+<td>200–300</td>
+<td>220–350</td>
+</tr>
+<tr>
+<td>Cutting Linear Acc/Dec Time</td>
+<td>300–350 мс</td>
+<td>300–350 мс</td>
+</tr>
+<tr>
+<td>Cutting Bell Acc/Dec Time</td>
+<td>60–100 мс</td>
+<td>60–100 мс</td>
+</tr>
+<tr>
+<td>Cutting Smooth Acc/Dec Time</td>
+<td>20–40 мс</td>
+<td>20–40 мс</td>
+</tr>
+<tr>
+<td>5mm Arc Max Feedrate</td>
+<td>2000–3000</td>
+<td>если в траектории есть дуги</td>
+</tr>
+<tr>
+<td>Arc Clamping Min Feedrate</td>
+<td>50</td>
+<td>если в траектории есть дуги</td>
+</tr>
+<tr>
+<td>Curve Fitting Tolerance</td>
+<td>3–5 мкм</td>
+<td>5–8 мкм только под контролем качества</td>
+</tr>
+<tr>
+<td>Curve surface speed fix</td>
+<td>0 или 1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Главное ограничение здесь — не теория контроллера, а механика вашего
+станка. Документация LNC действительно допускает большие диапазоны
+параметров, однако она же прямо указывает, что уменьшение времени
+ускорения делает разгон быстрее, но увеличивает вероятность вибрации и
+ошибок настройки. Из этого следует практический предел: не опускать path
+linear accel резко ниже 300 мс, пока не будут известны Y/Z limits,
+привода и масса портала. Это осторожный инженерный вывод, а не
+формальная заводская цифра.</p>
+<hr />
+<h2 id="какие-фото-и-данные-надо-собрать-дальше">Какие фото и данные
+надо собрать дальше</h2>
+<h3 id="обязательный-набор">Обязательный набор</h3>
+<p>Сейчас у нас нет самого важного — поосевых страниц Y и Z, а именно
+они критичны для вашего 3D-файла. Руководство MW-серии прямо разделяет
+настройки на Speed setting, High-speed &amp; high-precision, Servo
+parameters и Advanced parameters; менять нужно в первую очередь первые
+две группы, а deep servo tuning для pulse driver — не первоочередная
+задача.</p>
+<p>Сфотографируйте по порядку:</p>
+<table>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr>
+<th>Экран</th>
+<th>Что должно быть видно</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PROG → Program Check → SEL AIC</td>
+<td>активный профиль перед запуском</td>
+</tr>
+<tr>
+<td>Maintenance → Parameters → Speed setting</td>
+<td>X/Y/Z G00 max, G01 max, rapid accel, cutting accel</td>
+</tr>
+<tr>
+<td>Maintenance → Parameters → High-speed &amp; high-precision → Path
+parameters</td>
+<td>весь профиль, включая строки ниже текущего кадра</td>
+</tr>
+<tr>
+<td>Maintenance → Parameters → High-speed &amp; high-precision → Axis
+parameters</td>
+<td>X/Y/Z оси целиком</td>
+</tr>
+<tr>
+<td>Экран в реальном запуске</td>
+<td>programmed feed, actual feed, override %, alarms/warnings</td>
+</tr>
+<tr>
+<td>Диагностика/история</td>
+<td>если включите Operation history и Data Recorder</td>
+</tr>
+<tr>
+<td>G-code</td>
+<td>50–100 строк 2D-файла и 100–200 строк 3D-файла из одной рабочей
+зоны</td>
+</tr>
+</tbody>
+</table>
+<p>По G-code нужны именно такие фрагменты:</p>
+<ul>
+<li>начало программы до первого реза;</li>
+<li>50–100 строк в зоне, где станок «ползёт»;</li>
+<li>если есть 2D-контур, 20–30 строк с типичными переходами;</li>
+<li>любой участок, где есть G2/G3, если он используется.</li>
+</ul>
+<h3 id="что-отдельно-зафиксировать-при-тестах">Что отдельно
+зафиксировать при тестах</h3>
+<p>Во время каждого прогона записывайте в таблицу:</p>
+<table>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 7%" />
+<col style="width: 16%" />
+<col style="width: 8%" />
+<col style="width: 9%" />
+<col style="width: 12%" />
+<col style="width: 8%" />
+<col style="width: 15%" />
+<col style="width: 10%" />
+<col style="width: 8%" />
+</colgroup>
+<thead>
+<tr>
+<th>Дата</th>
+<th>Профиль</th>
+<th>Изменённые параметры</th>
+<th>Материал</th>
+<th>Инструмент</th>
+<th>F в программе</th>
+<th>Override</th>
+<th>Фактическая подача</th>
+<th>Шум/вибрация</th>
+<th>Качество</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>Даже простая такая таблица через 5–6 тестов даст больше пользы, чем
+разовые «ощущения».</p>
+<hr />
+<h2 id="наблюдение-экрана-в-реальном-времени-на-пк">Наблюдение экрана в
+реальном времени на ПК</h2>
+<p>У MW2200A по официальной спецификации есть VGA video output, а также
+поддержка ReCON. Для реального дублирования именно экрана самый надёжный
+способ — видеозахват VGA, потому что он показывает ровно то же, что
+отображает панель, включая feed, alarms и текущие страницы параметров.
+Сетевой ReCON можно использовать как дополнительный канал, но именно для
+непрерывного «зеркала» экрана VGA-путь предсказуемее.</p>
+<p>Рекомендуемая схема:</p>
+<pre><code>LNC MW2200A VGA OUT
+        ↓
+Активный VGA splitter 1x2
+   ↙          ↘
+Штатный      Активный VGA to HDMI converter
+монитор            ↓
+станка       USB HDMI capture
+                   ↓
+               ПК с OBS</code></pre>
+<p>Практически это выглядит так:</p>
+<ul>
+<li>активный VGA splitter 1×2;</li>
+<li>активный VGA→HDMI converter;</li>
+<li>USB HDMI capture;</li>
+<li>на ПК — OBS Studio с источником «Video Capture Device».</li>
+</ul>
+<p>Так вы сможете записывать экран во время тестов и потом покадрово
+смотреть, где именно падает подача.</p>
+<hr />
+<h2 id="короткий-troubleshooting">Короткий troubleshooting</h2>
+<h3 id="если-появилась-вибрация">Если появилась вибрация</h3>
+<p>Самая типичная причина — слишком агрессивно уменьшили Cutting Linear
+Acc/Dec Time либо слишком быстро подняли Corner Referential Feedrate.
+Документация LNC прямо связывает уменьшение Acc/Dec с более быстрым
+выходом на скорость и ростом вибрации. В этом случае откатите последний
+шаг, а не весь профиль сразу. Обычно сначала возвращают Linear Acc/Dec
+на один шаг назад, и только потом уменьшают Corner.</p>
+<h3
+id="если-программная-подача-12000-а-фактически-больше-300800-не-получается">Если
+программная подача 12000, а фактически больше 300–800 не получается</h3>
+<p>Проверьте по порядку:</p>
+<ol type="1">
+<li>активный AIC-профиль;</li>
+<li>1st Path Max Cutting Feedrate;</li>
+<li>1004 G01 MAX. SPEED OF LINEAR CUTTING;</li>
+<li>Y/Z axis G01 max и cutting accel;</li>
+<li>режим G64 и отсутствие G61/G09;</li>
+<li>FLAG OF EXACT CHECK;</li>
+<li>включён ли Curve Fitting Tolerance;</li>
+<li>не нужен ли Curve surface speed fix для 3D.</li>
+</ol>
+<p>Это соответствует структуре ограничений в LNC: профиль AIC-II,
+глобальный G01 max speed, exact stop logic и параметры криволинейной
+поверхности.</p>
+<h3 id="если-появляется-потеря-позиционирования">Если появляется потеря
+позиционирования</h3>
+<p>Так как MW2200A в этой конфигурации — pulse-command контроллер, а
+Servo parameters в UI для pulse driver не являются главным местом
+первичной настройки, симптом «потери шагов» или ухода позиции надо
+сначала трактовать как переагрессивную кинематику либо проблемы
+привода/механики, а не как повод сразу лезть в loop gains. Сначала
+верните последние изменения разгона и corner speed, проверьте
+ремни/рейку/ШВП, люфты, зацепление и только потом обсуждайте глубокую
+настройку приводов.</p>
+<h3 id="если-поверхность-стала-волнистой-или-рваной">Если поверхность
+стала волнистой или «рваной»</h3>
+<p>Для 3D это обычно означает одно из трёх:</p>
+<ol type="1">
+<li>слишком высоки corner/acceleration для данной механики;</li>
+<li>слишком большой Curve Fitting Tolerance;</li>
+<li>Z не успевает по динамике за Y.</li>
+</ol>
+<p>В таком случае сначала уменьшите Curve Fitting, затем верните на шаг
+назад Linear Acc/Dec, и только потом трогайте corner speed.</p>
+<h3 id="если-появились-mot-alarms">Если появились MOT alarms</h3>
+<p>Снимите фото точного кода MOT. По LNC многие ошибки связаны именно с
+выходом параметров за допустимый диапазон, несоответствием G01 max
+speed, rigid tapping limits или некорректной комбинацией
+параметров/режимов. Без конкретного MOT-кода гадать не стоит.</p>
+<hr />
+<h2 id="приоритет-источников-и-итоговый-вывод">Приоритет источников и
+итоговый вывод</h2>
+<p>Для настройки такого станка имеет смысл доверять источникам в
+следующем порядке.</p>
+<p>Во-первых, официальной странице LNC MW2200A: она подтверждает модель
+контроллера, VGA, 3 axes, 1 Control Path, ReCON.</p>
+<p>Во-вторых, операционным и application-руководствам LNC по MW/milling
+series: именно они описывают SEL AIC, AIC-II, Speed setting, High-speed
+&amp; high-precision, G01 max speed, Curve fitting tolerance, Curve
+surface Cutting feedrate speed fix, Operation history record, Data
+Recorder. Эти документы — главный источник для самих параметров и их
+диапазонов.</p>
+<p>В-третьих, программное руководство LNC MILL: оно важно для проверки
+заголовка программы, G20/G21, G94, G61/G64, а также понимания того, не
+включён ли режим точной остановки.</p>
+<p>Русскоязычные сайты с зеркалами и видео могут быть полезны как
+вспомогательные, но решения по тюнингу лучше принимать по руководствам
+LNC и по данным именно вашего станка, а не по чужим универсальным
+советам.</p>
+<p>Итог по вашей ситуации такой. Для 2D разумно начинать с поднятия
+потолка подачи и угловой скорости. Для 3D ваш главный резерв — не
+дуговые параметры сами по себе, а правильный AIC-профиль, G64, проверка
+exact stop, Corner Referential Feedrate, линейный Acc/Dec и особенно
+лимиты Y/Z. Самый безопасный первый шаг — создать отдельный test-3D
+профиль, поставить в нём 1st Path Max Cutting Feedrate = 12000, Corner
+Referential Feedrate = 150, Linear Acc/Dec = 450, оставить Bell без
+изменений, явно прописать G21 G94 G64, сделать воздушный прогон и
+записать экран через OBS. После этого уже можно идти ступенями к Corner
+200–250, Linear 400–350, а затем отдельно тестировать Curve Fitting 3–5
+µm и Curve surface speed fix = 1. Такой порядок даёт наибольший шанс
+поднять реальную скорость без рывка в опасную зону.</p>
+</body>
+</html>

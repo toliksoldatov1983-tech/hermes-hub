@@ -1,0 +1,270 @@
+{
+  "status": "created-and-verified",
+  "root": {
+    "mimeType": "application/vnd.google-apps.folder",
+    "parents": [
+      "0AFVq6WDHzvNUUk9PVA"
+    ],
+    "webViewLink": "https://drive.google.com/drive/folders/1vSO8OoPMnUKMVgM4O39-gb32VBMHM7j9",
+    "id": "1vSO8OoPMnUKMVgM4O39-gb32VBMHM7j9",
+    "name": "МАЛЯРКА — УПРАВЛЕНИЕ"
+  },
+  "folders_expected": 7,
+  "folders_created_now": 0,
+  "root_child_folders": 6,
+  "documents_expected": 16,
+  "documents_created_now": 2,
+  "documents_verified": 16,
+  "empty_documents": [],
+  "unsafe_permissions": [],
+  "folders": {
+    "00": {
+      "mimeType": "application/vnd.google-apps.folder",
+      "parents": [
+        "1vSO8OoPMnUKMVgM4O39-gb32VBMHM7j9"
+      ],
+      "webViewLink": "https://drive.google.com/drive/folders/1JDAuIiVH_oTj8MSz1_wwnP_SzKVhYkOM",
+      "id": "1JDAuIiVH_oTj8MSz1_wwnP_SzKVhYkOM",
+      "name": "00 НАЧАТЬ ЗДЕСЬ"
+    },
+    "01": {
+      "mimeType": "application/vnd.google-apps.folder",
+      "parents": [
+        "1vSO8OoPMnUKMVgM4O39-gb32VBMHM7j9"
+      ],
+      "webViewLink": "https://drive.google.com/drive/folders/118esrMdc9wBI4Mk6SXMm8XOcA-S43Nz-",
+      "id": "118esrMdc9wBI4Mk6SXMm8XOcA-S43Nz-",
+      "name": "01 ПРАВИЛА"
+    },
+    "02": {
+      "mimeType": "application/vnd.google-apps.folder",
+      "parents": [
+        "1vSO8OoPMnUKMVgM4O39-gb32VBMHM7j9"
+      ],
+      "webViewLink": "https://drive.google.com/drive/folders/1OYXXLDPL67mZjBqRFwjC5_TUeMvJ-s_8",
+      "id": "1OYXXLDPL67mZjBqRFwjC5_TUeMvJ-s_8",
+      "name": "02 ЦЕНЫ И НОРМЫ"
+    },
+    "03": {
+      "mimeType": "application/vnd.google-apps.folder",
+      "parents": [
+        "1vSO8OoPMnUKMVgM4O39-gb32VBMHM7j9"
+      ],
+      "webViewLink": "https://drive.google.com/drive/folders/131bs51XG-J_S06fjC1HOeHEjcP7P6cw5",
+      "id": "131bs51XG-J_S06fjC1HOeHEjcP7P6cw5",
+      "name": "03 ШАБЛОНЫ"
+    },
+    "04": {
+      "mimeType": "application/vnd.google-apps.folder",
+      "parents": [
+        "1vSO8OoPMnUKMVgM4O39-gb32VBMHM7j9"
+      ],
+      "webViewLink": "https://drive.google.com/drive/folders/1xrNPkO996Ai_UeA9Or6XgtvVhaK8vrdc",
+      "id": "1xrNPkO996Ai_UeA9Or6XgtvVhaK8vrdc",
+      "name": "04 ИНСТРУКЦИИ"
+    },
+    "05": {
+      "mimeType": "application/vnd.google-apps.folder",
+      "parents": [
+        "1vSO8OoPMnUKMVgM4O39-gb32VBMHM7j9"
+      ],
+      "webViewLink": "https://drive.google.com/drive/folders/1N0vlY9ZYq1bcnGZto82gGxW4K56iRT4z",
+      "id": "1N0vlY9ZYq1bcnGZto82gGxW4K56iRT4z",
+      "name": "05 ЭТАЛОНЫ"
+    }
+  },
+  "documents": [
+    {
+      "category": "00",
+      "title": "Главный индекс Малярки",
+      "source": "00_START/MALYARKA_DOCUMENT_INDEX.md",
+      "id": "16nLemrSDUX6Jw9m22UUzdrmJ-LpnhGmgcWs9EAfatrk",
+      "name": "Главный индекс Малярки",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "1JDAuIiVH_oTj8MSz1_wwnP_SzKVhYkOM"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/16nLemrSDUX6Jw9m22UUzdrmJ-LpnhGmgcWs9EAfatrk/edit?usp=drivesdk"
+    },
+    {
+      "category": "01",
+      "title": "Правила проекта",
+      "source": "00_START/PROJECT_RULES.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "118esrMdc9wBI4Mk6SXMm8XOcA-S43Nz-"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1844TQA82zgpKtq-iE3R6FPD2sneG3KJYHySpcCNszZ8/edit?usp=drivesdk",
+      "id": "1844TQA82zgpKtq-iE3R6FPD2sneG3KJYHySpcCNszZ8",
+      "name": "Правила проекта"
+    },
+    {
+      "category": "01",
+      "title": "Приём заказа и спорные строки",
+      "source": "00_START/ORDER_INTAKE_RULES.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "118esrMdc9wBI4Mk6SXMm8XOcA-S43Nz-"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1CZtrXimyMHi6cS5DnJoNbDQuICZSHj8HfyRwbindHgc/edit?usp=drivesdk",
+      "id": "1CZtrXimyMHi6cS5DnJoNbDQuICZSHj8HfyRwbindHgc",
+      "name": "Приём заказа и спорные строки"
+    },
+    {
+      "category": "01",
+      "title": "Красные линии и запреты",
+      "source": "00_START/GLOBAL_RED_LINES.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "118esrMdc9wBI4Mk6SXMm8XOcA-S43Nz-"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1371KDjAA0m4EtMbF2B-8-p0ZGdVoLxJQLCEJXqIcw3M/edit?usp=drivesdk",
+      "id": "1371KDjAA0m4EtMbF2B-8-p0ZGdVoLxJQLCEJXqIcw3M",
+      "name": "Красные линии и запреты"
+    },
+    {
+      "category": "02",
+      "title": "Реестр цен на услуги и нормы расхода",
+      "source": "00_START/PRICE_AND_LKM_FROM_GOOGLE_DRIVE.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "1OYXXLDPL67mZjBqRFwjC5_TUeMvJ-s_8"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1C5B5oUEYWmnk4u910lVBHrqHyhXozPT1rhL52ZGBc28/edit?usp=drivesdk",
+      "id": "1C5B5oUEYWmnk4u910lVBHrqHyhXozPT1rhL52ZGBc28",
+      "name": "Реестр цен на услуги и нормы расхода"
+    },
+    {
+      "category": "02",
+      "title": "Реестр цен материалов, состава ЛКМ и неизвестных значений",
+      "source": "00_START/HERMES_PRICE_STOCK_DRAFT.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "1OYXXLDPL67mZjBqRFwjC5_TUeMvJ-s_8"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1XfwNliHWifzak4VzVX3qhcgZ9rQdamzHAMq1I6d0-sY/edit?usp=drivesdk",
+      "id": "1XfwNliHWifzak4VzVX3qhcgZ9rQdamzHAMq1I6d0-sY",
+      "name": "Реестр цен материалов, состава ЛКМ и неизвестных значений"
+    },
+    {
+      "category": "03",
+      "title": "Шаблон приёма заказа",
+      "source": "docs/malyarka_templates/ORDER_INTAKE_TEMPLATE.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "131bs51XG-J_S06fjC1HOeHEjcP7P6cw5"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1BkVELJo3fEDttu2sH_OIlYRQdwVEE1qMrVsw7KtS6X4/edit?usp=drivesdk",
+      "id": "1BkVELJo3fEDttu2sH_OIlYRQdwVEE1qMrVsw7KtS6X4",
+      "name": "Шаблон приёма заказа"
+    },
+    {
+      "category": "03",
+      "title": "Шаблон файла Corel",
+      "source": "docs/malyarka_templates/COREL_EXPORT_TEMPLATE.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "131bs51XG-J_S06fjC1HOeHEjcP7P6cw5"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1bW1ku_iBDoghewOE4-P8_Y6YuPvt49xDdPz3G7rosWE/edit?usp=drivesdk",
+      "id": "1bW1ku_iBDoghewOE4-P8_Y6YuPvt49xDdPz3G7rosWE",
+      "name": "Шаблон файла Corel"
+    },
+    {
+      "category": "03",
+      "title": "Шаблон файла Малярки и материалов",
+      "source": "docs/malyarka_templates/MALYARKA_MATERIAL_TEMPLATE.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "131bs51XG-J_S06fjC1HOeHEjcP7P6cw5"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1bhcPU_OSKe3-0B6fFKhObu9MdHcvZiOfECUF4WP2ukc/edit?usp=drivesdk",
+      "id": "1bhcPU_OSKe3-0B6fFKhObu9MdHcvZiOfECUF4WP2ukc",
+      "name": "Шаблон файла Малярки и материалов"
+    },
+    {
+      "category": "03",
+      "title": "Шаблон финансов и себестоимости",
+      "source": "docs/malyarka_templates/FINANCE_AND_COST_TEMPLATE.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "131bs51XG-J_S06fjC1HOeHEjcP7P6cw5"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1exqoBdhCPUR5FtDcEHw9w9-g51i_nMcNyfl7Rjdmxbs/edit?usp=drivesdk",
+      "id": "1exqoBdhCPUR5FtDcEHw9w9-g51i_nMcNyfl7Rjdmxbs",
+      "name": "Шаблон финансов и себестоимости"
+    },
+    {
+      "category": "03",
+      "title": "Шаблон архивной карточки заказа",
+      "source": "docs/malyarka_templates/ARCHIVE_ORDER_CARD_TEMPLATE.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "131bs51XG-J_S06fjC1HOeHEjcP7P6cw5"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1pVhywe5-dd2nAWMA8d8SKLImPdUR0gnKWnq23zQ-wxg/edit?usp=drivesdk",
+      "id": "1pVhywe5-dd2nAWMA8d8SKLImPdUR0gnKWnq23zQ-wxg",
+      "name": "Шаблон архивной карточки заказа"
+    },
+    {
+      "category": "04",
+      "title": "Безопасное чтение CorelDRAW CDR",
+      "source": "00_MEMORY/CORELDRAW_CDR_READONLY_PROCESS.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "1xrNPkO996Ai_UeA9Or6XgtvVhaK8vrdc"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1b0PVutydy1pfsHD9MNUdzxEugf9EnBdvuXN8dxtqxyY/edit?usp=drivesdk",
+      "id": "1b0PVutydy1pfsHD9MNUdzxEugf9EnBdvuXN8dxtqxyY",
+      "name": "Безопасное чтение CorelDRAW CDR"
+    },
+    {
+      "category": "05",
+      "title": "Описание эталонов",
+      "source": "docs/malyarka_reference_orders/README.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "1N0vlY9ZYq1bcnGZto82gGxW4K56iRT4z"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1hwseiw4k33LRCiiAzKOgTVg-ZhpL-D3Xcqg0yX9GPu4/edit?usp=drivesdk",
+      "id": "1hwseiw4k33LRCiiAzKOgTVg-ZhpL-D3Xcqg0yX9GPu4",
+      "name": "Описание эталонов"
+    },
+    {
+      "category": "05",
+      "title": "Эталон Юля 001",
+      "source": "docs/malyarka_reference_orders/YULYA_001.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "1N0vlY9ZYq1bcnGZto82gGxW4K56iRT4z"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1c9NRHycfZjCdl0Uo7pWNB21EmkFQXklD03bJZsIprm4/edit?usp=drivesdk",
+      "id": "1c9NRHycfZjCdl0Uo7pWNB21EmkFQXklD03bJZsIprm4",
+      "name": "Эталон Юля 001"
+    },
+    {
+      "category": "05",
+      "title": "Эталон УЧ-002",
+      "source": "docs/malyarka_reference_orders/UCH_002.md",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "1N0vlY9ZYq1bcnGZto82gGxW4K56iRT4z"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1zfok_L_gvVW8YknqYRYa09Hfh_ME2MWfIhZPHY4jdUc/edit?usp=drivesdk",
+      "id": "1zfok_L_gvVW8YknqYRYa09Hfh_ME2MWfIhZPHY4jdUc",
+      "name": "Эталон УЧ-002"
+    },
+    {
+      "category": "05",
+      "title": "Эталон УЧ-003",
+      "source": "docs/malyarka_reference_orders/UCH_003.md",
+      "id": "1m1mQf4vAiJpdk05JxyufD14KHXujCq2-lIXWX8raH_g",
+      "name": "Эталон УЧ-003",
+      "mimeType": "application/vnd.google-apps.document",
+      "parents": [
+        "1N0vlY9ZYq1bcnGZto82gGxW4K56iRT4z"
+      ],
+      "webViewLink": "https://docs.google.com/document/d/1m1mQf4vAiJpdk05JxyufD14KHXujCq2-lIXWX8raH_g/edit?usp=drivesdk"
+    }
+  ]
+}
