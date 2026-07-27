@@ -63,6 +63,15 @@ class DraftLifecycle:
                     dispute_reason="Нет разделителя '|'. Формат: название|количество|единица",
                 ))
                 draft.add_question(f"'{line}' — это заказ? Укажи в формате: название|количество|единица")
+            else:
+                # Line without pipes and without digits — unrecognised format
+                draft.add_disputed(OrderDraftLine(
+                    raw_text=line,
+                    is_confirmed=False,
+                    is_disputed=True,
+                    dispute_reason="Неизвестный формат строки",
+                ))
+                draft.add_question(f"'{line}' — непонятный формат. Укажи: название|количество|единица")
 
         if draft.has_disputes:
             draft.status = OrderDraftStatus.HAS_DISPUTES
