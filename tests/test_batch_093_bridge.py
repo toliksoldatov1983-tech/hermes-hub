@@ -41,7 +41,7 @@ class TestBridgeContract:
         from hermes_core.runtime_bridge import BridgeRequest, BridgeActionType
         req = BridgeRequest(action=BridgeActionType.STATUS)
         assert req.action == BridgeActionType.STATUS
-        assert req.source == "old-hermes"
+        assert req.source == "archive"
         assert req.mode == "safe-local"
 
     def test_bridge_request_from_string(self):

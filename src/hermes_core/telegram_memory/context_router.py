@@ -121,7 +121,6 @@ class ContextAwareRouter:
             buttons = ["✏️ Исправить", "❌ Отмена"]
         else:
             resp_text += "\n\n✅ Заказ готов. Подтвердить?"
-            draft.status = OrderDraftStatus.AWAITING_CONFIRMATION
             session.set_pending_question("Подтвердить заказ?", ReplyExpectation.CONFIRMATION)
             buttons = ["✅ Подтвердить", "✏️ Исправить", "❌ Отмена"]
 
@@ -154,6 +153,7 @@ class ContextAwareRouter:
         else:
             resp_text = "✅ Исправление применено. Все строки подтверждены."
             draft.status = OrderDraftStatus.AWAITING_CONFIRMATION
+            session.set_pending_question("Подтвердить заказ?", ReplyExpectation.CONFIRMATION)
             resp_text += "\n\nПодтвердить заказ?"
             buttons = ["✅ Подтвердить", "❌ Отмена"]
 

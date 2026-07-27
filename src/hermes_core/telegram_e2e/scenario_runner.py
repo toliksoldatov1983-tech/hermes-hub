@@ -31,15 +31,19 @@ class E2EScenarioRunner:
                 resp = router.route(step.user_message, session_id=sid)
 
                 # Check intent
-                intent_match = (not step.expected_intent) or (resp.session_state.get("mode", "") == step.expected_mode)
+                intent_match = (not step.expected_mode) or (
+                    resp.session_state.get("mode", "") == step.expected_mode
+                )
 
                 # Check blocked
                 blocked_match = step.expected_blocked == bool(resp.blocked_reason)
 
                 # Check draft status
                 draft_match = True
-                if step.expected_draft_status and resp.draft_state:
-                    draft_match = resp.draft_state.get("status", "") == step.expected_draft_status
+                if step.expected_draft_status:
+                    draft_match = bool(resp.draft_state) and (
+                        resp.draft_state.get("status", "") == step.expected_draft_status
+                    )
 
                 step_ok = intent_match and blocked_match and draft_match
 

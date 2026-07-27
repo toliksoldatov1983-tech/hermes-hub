@@ -3,8 +3,8 @@
 Copy this into a new Codex chat.
 
 ```text
-Continue Hermes-Clean from:
-C:\Users\user\Desktop\прайсы\Hermes-Clean
+Continue «Гермес Клин» from:
+C:\Users\user\Documents\«Гермес Клин»
 
 Use minimal context only. Do not scan everything.
 

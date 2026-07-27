@@ -3,10 +3,10 @@
 Copy this into a new Hermes chat.
 
 ```text
-Continue Hermes-Clean.
+Continue «Гермес Клин».
 
 Work only in:
-C:\Users\user\Desktop\прайсы\Hermes-Clean
+C:\Users\user\Documents\«Гермес Клин»
 
 Do not load the whole project.
 Do not scan old projects.
@@ -25,7 +25,7 @@ Read only this minimal context:
 9. 00_MEMORY\\COMPACT_STATE_FOR_AGENTS.md
 10. 00_MEMORY\\CONTEXT_LOAD_POLICY.md
 
-Hermes-Clean itself is the Obsidian vault. Do not load E:\\[архив] [удалённый архив] or E:\\«Гермес Клин».
+The active project is «Гермес Клин». Do not load E:\\[архив] [удалённый архив] or E:\\«Гермес Клин».
 
 After reading, report:
 - current NEXT_TASK;

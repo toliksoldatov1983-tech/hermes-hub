@@ -1486,6 +1486,57 @@ def telegram_safety_check_command(_: argparse.Namespace) -> int:
     return 0
 
 
+# ── Telegram conversation memory commands ──
+
+
+def telegram_memory_status_command(_: argparse.Namespace) -> int:
+    from hermes_core.telegram_memory import get_memory_store
+    store = get_memory_store()
+    print("telegram_memory_status=dry-run")
+    print(f"in_memory={store.is_in_memory}")
+    print(f"persistent={store.is_persistent}")
+    return 0
+
+
+def telegram_session_dry_run_command(_: argparse.Namespace) -> int:
+    from hermes_core.telegram_memory import get_memory_store
+    session = get_memory_store().reset_session("cli-dry-run-session")
+    session.add_turn("user", "привет", "general_chat")
+    print("telegram_session=dry-run")
+    print(f"session_id={session.session_id}")
+    print(f"turns={session.turn_count}")
+    return 0
+
+
+def telegram_order_draft_create_dry_run_command(_: argparse.Namespace) -> int:
+    from hermes_core.telegram_memory import DraftLifecycle
+    draft = DraftLifecycle().parse_from_text("cli-draft-001", "paint|2|bucket")
+    print("telegram_order_draft=dry-run")
+    print(f"status={draft.status.value}")
+    print(f"confirmed_rows={len(draft.confirmed_rows)}")
+    return 0
+
+
+def telegram_conversation_flow_dry_run_command(_: argparse.Namespace) -> int:
+    from hermes_core.telegram_memory import ContextAwareRouter
+    router = ContextAwareRouter()
+    response = router.route("paint|2|bucket", session_id="cli-flow-session")
+    print("telegram_conversation_flow=dry-run")
+    print(f"mode={response.session_state.get('mode')}")
+    print(f"draft_status={response.draft_state.get('status') if response.draft_state else 'none'}")
+    return 0
+
+
+def telegram_memory_safety_check_command(_: argparse.Namespace) -> int:
+    from hermes_core.telegram_memory import ContextAwareRouter
+    response = ContextAwareRouter().route(".env", session_id="cli-safety-session")
+    print("telegram_memory_safety=OK")
+    print(f"blocked={bool(response.blocked_reason)}")
+    print("persistent_storage=False")
+    print("real_telegram_api=False")
+    return 0
+
+
 # ── Telegram E2E commands ──
 
 
@@ -2077,6 +2128,18 @@ def telegram_expected_responses_command(_: argparse.Namespace) -> int:
 def telegram_dry_run_freeze_status_command(_: argparse.Namespace) -> int:
     from hermes_core.telegram_live import DRY_RUN_FREEZE
     print(DRY_RUN_FREEZE)
+    return 0
+
+
+def telegram_rc_stabilization_status_command(_: argparse.Namespace) -> int:
+    from hermes_core.telegram_live import RC_STABILIZATION
+    print(RC_STABILIZATION)
+    return 0
+
+
+def telegram_release_consistency_check_command(_: argparse.Namespace) -> int:
+    from hermes_core.telegram_live import RELEASE_CONSISTENCY_CHECK
+    print(RELEASE_CONSISTENCY_CHECK)
     return 0
 
 

@@ -97,7 +97,7 @@ class BridgeRequest:
     """Incoming request from old Hermes shell."""
 
     action: BridgeActionType
-    source: str = "old-hermes"
+    source: str = "archive"
     mode: str = "safe-local"
     payload: dict[str, Any] = field(default_factory=dict)
     context_budget_pct: int = 0

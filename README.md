@@ -1,18 +1,18 @@
-# Hermes-Clean
+# Гермес Клин
 
-Hermes-Clean is the clean local workspace for the new Hermes assistant.
+«Гермес Клин» — локальная рабочая среда ассистента Hermes.
 
 Project path:
 
 ```text
-C:\Users\user\Desktop\Hermes-Clean
+C:\Users\user\Documents\«Гермес Клин»
 ```
 
 Old archives, quarantine folders, Google Drive documents and old Hermes/Malyarka projects are archive sources only. They are not the current source of truth.
 
 ## Quick Start
 
-Run from `C:\Users\user\Desktop\Hermes-Clean`:
+Run from `C:\Users\user\Documents\«Гермес Клин»`:
 
 ```cmd
 scripts\hermes.cmd refresh-all
@@ -33,7 +33,7 @@ Open:
 - Project audit: 25 checks, 0 failed
 - Smoke: 23 checks, 0 failed
 - Release checklist: OK
-- Source of truth: Hermes-Clean only
+- Source of truth: «Гермес Клин» only
 
 ## Ready Locally
 

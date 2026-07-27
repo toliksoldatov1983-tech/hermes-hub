@@ -144,7 +144,7 @@ class TestMainActivitySafety:
         assert "ACTION_VIEW" not in java, "External intents should not be used"
 
     def test_has_warning_about_phone_localhost(self):
-        java = (ANDROID_DIR / "app/src/main/java/com/hermes/webview/MainActivity.java").read_text()
+        java = (ANDROID_DIR / "app/src/main/java/com/hermes/webview/MainActivity.java").read_text(encoding="utf-8")
         assert "127.0.0.1" in java and "телефон" in java.lower(), \
             "Should warn about 127.0.0.1 on phone"
 

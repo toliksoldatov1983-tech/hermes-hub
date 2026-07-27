@@ -30,7 +30,7 @@ Hermes-Clean — локальная dry-run среда для ассистент
 
 **Путь проекта:**
 ```text
-C:\Users\user\Desktop\Hermes-Clean
+C:\Users\user\Documents\«Гермес Клин»
 ```
 
 ## Быстрый старт (одна команда)
@@ -45,7 +45,7 @@ scripts\start_local.cmd
 ## Утренний запуск
 
 ```cmd
-cd C:\Users\user\Desktop\Hermes-Clean
+cd C:\Users\user\Documents\«Гермес Клин»
 scripts\hermes.cmd refresh-all
 scripts\hermes.cmd dashboard
 scripts\hermes.cmd smoke

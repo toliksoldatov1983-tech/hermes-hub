@@ -128,3 +128,27 @@ Safety:
 
 Next:
 - restore read-only Drive access and compare before any deletion.
+
+---
+
+## FULL_PROJECT_AUDIT_2026-07-28
+
+Status: COMPLETED_LOCAL.
+
+Completed:
+- исправлены все 13 локально воспроизводимых тестовых сбоев;
+- согласован текущий путь проекта в активной памяти;
+- текущий статус Telegram/сервера согласован с `AGENTS.md`;
+- полный набор тестов и синтаксис Python повторно проверены.
+
+Checks:
+- full pytest: 823 passed;
+- Python AST: 316 files OK;
+- stale active path/status scan: 0 matches.
+
+Safety:
+- no deletes;
+- no `.env`, tokens or keys;
+- no live Telegram or server actions;
+- no real orders or exports;
+- no Google Drive changes.

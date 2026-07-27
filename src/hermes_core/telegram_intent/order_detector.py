@@ -83,6 +83,18 @@ def detect_order(text: str) -> OrderDetectionResult:
     result = OrderDetectionResult()
     text_lower = text.lower()
 
+    # The dry-run order draft format is one or more item|quantity|unit
+    # rows. Treat it as an explicit order even when it contains no
+    # dimensions, colours or material keywords.
+    pipe_rows = [line.strip() for line in text.splitlines() if line.strip()]
+    valid_pipe_rows = [
+        line for line in pipe_rows
+        if len(line.split("|")) >= 3 and all(part.strip() for part in line.split("|")[:3])
+    ]
+    if valid_pipe_rows:
+        result.found_patterns.append("structured_rows")
+        result.extracted["structured_rows"] = valid_pipe_rows
+
     # Check for corrections/confirmations first
     for pat in _CORRECTION_PATTERNS:
         if pat.search(text_lower):
@@ -146,7 +158,11 @@ def detect_order(text: str) -> OrderDetectionResult:
         if key in result.found_patterns:
             score += 1
 
-    if result.dimensions_found and score >= 2:
+    if valid_pipe_rows:
+        result.confidence = 0.95
+        result.is_order = True
+        result.reason = "Обнаружен структурированный заказ: название|количество|единица."
+    elif result.dimensions_found and score >= 2:
         result.confidence = min(0.95, 0.5 + score * 0.15)
         result.is_order = True
         result.reason = f"Обнаружены признаки заказа: {', '.join(result.found_patterns)}"

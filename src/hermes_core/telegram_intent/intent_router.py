@@ -77,13 +77,17 @@ class TelegramIntentRouter:
                 suggested_question="",
             )
 
-        if order_result.is_confirmation and awaiting_confirmation:
-            return IntentResult(
-                intent=IntentType.MALYARKA_ORDER_CONFIRMATION,
-                confidence=0.9,
-                reason=order_result.reason,
-                route_target="malyarka",
-            )
+        if order_result.is_confirmation:
+            if awaiting_confirmation:
+                return IntentResult(
+                    intent=IntentType.MALYARKA_ORDER_CONFIRMATION,
+                    confidence=0.9,
+                    reason=order_result.reason,
+                    route_target="malyarka",
+                )
+            # A bare confirmation without an active question is not a new
+            # order. Let the normal chat fallback explain the missing context.
+            return IntentResult.general_chat()
 
         if order_result.is_order:
             if order_result.confidence >= 0.7:

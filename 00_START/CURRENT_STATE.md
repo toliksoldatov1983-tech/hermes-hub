@@ -1,28 +1,26 @@
 # CURRENT STATE
 
-Дата: 2026-07-24 · Статус: **GOOGLE DRIVE МАЛЯРКИ ПЕРЕСОБРАН И ПРОВЕРЕН**
+Дата: 2026-07-28 · Статус: **ЛОКАЛЬНЫЙ ПРОЕКТ ПРОВЕРЕН И ИСПРАВЛЕН**
 
-## Сервер
-hermes / 178.104.95.187 · SSH ✅
+## Источник правды
 
-## Telegram
-PRODUCTION SINGLE-USER · Gateway RUNNING 24/7 on server · PHONE LIVE TEST PASSED
+- Единственный рабочий проект: `C:\Users\user\Documents\«Гермес Клин»`.
+- Старые Hermes-Hub, Hermes-General, Hermes-Clean и внешние архивы не использовать как источник текущего состояния.
 
-Server check 2026-07-04:
-- `hermes-gateway.service` is active, enabled, `Restart=always`, `Linger=yes`.
-- Service command: `python -m hermes_cli.main gateway run --replace`.
-- Earlier Telegram polling conflicts stopped after 2026-07-04 08:20:11 UTC in checked logs.
-- Owner phone test reached the server at 2026-07-04 08:29:42 UTC.
-- Pairing approved for Telegram user `784990082` at 2026-07-04 13:34 +05:00.
-- Repeat `/status` from phone returned `Hermes Gateway Status` in Telegram.
-- Fresh server check: gateway remains `active` and `enabled`; no new journal errors in the checked window.
+## Сервер и Telegram
 
-## Сценарий приёма заказа
-1. Пользователь пишет заказ в Telegram обычным текстом
-2. Hermes → preview (confirmed/disputed)
-3. Disputed=0 → жду «ПИШИ ЗАКАЗ В E:\РАБОТА»
-4. Export в E:\РАБОТА\01_ЗАКАЗЫ\2026\07_Июль\<заказ>\
-5. Если папка есть → _v2
+- По текущему `AGENTS.md` Telegram-бот отключён, прежний сервер удалён.
+- Записи о работающем сервере от 2026-07-04 являются историческими и не описывают текущее состояние.
+- Live-бот, polling, реальные заказы и реальные экспорты не запускать без отдельного подтверждения.
+
+## Локальная проверка 2026-07-28
+
+- Синтаксис Python: 316 файлов без ошибок.
+- Исходный прогон: 810 passed, 13 failed.
+- Исправлены маршрутизация структурированных заказов, подтверждения и E2E-контракты.
+- Восстановлены отсутствовавшие dry-run CLI-команды.
+- Исправлены тесты, зависевшие от системной кодировки и чужого Python.
+- Активные файлы памяти переведены на текущий путь проекта.
 
 ## Рабочие документы Малярки
 
@@ -33,7 +31,7 @@ Server check 2026-07-04:
 - Подтверждённые ставки маляру: модерн 6 000 тг/м², выборка 7 400 тг/м².
 - По трём накладным подтверждены цены за 1 кг для 10 кодов ЛКМ; тип материалов пока не определён.
 - Цены МДФ, грунта и остальных компонентов остаются неизвестными.
-- Google Drive пересобран из канонических документов Hermes-Clean.
+- Google Drive был пересобран из канонических документов проекта.
 - Отчёт: `05_REPORTS/MALYARKA_DRIVE_DOCUMENTS_IMPORT_2026-07-24.md`.
 
 ## Пересборка Google Drive

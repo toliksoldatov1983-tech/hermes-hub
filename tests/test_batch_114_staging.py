@@ -88,6 +88,6 @@ class TestRegression:
 
     def test_test_count(self):
         import subprocess
-        result = subprocess.run(["python", "-m", "pytest", "tests/", "--collect-only", "-q"],
+        result = subprocess.run([sys.executable, "-m", "pytest", "tests/", "--collect-only", "-q"],
                                 capture_output=True, text=True, cwd=str(ROOT))
         assert "tests collected" in result.stdout
